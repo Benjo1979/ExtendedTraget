@@ -1,0 +1,52 @@
+\BOOKMARK [0][-]{chapter.1}{\351tat de l'art}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Pistage multi-de cibles r\351solues}{chapter.1}% 2
+\BOOKMARK [2][-]{subsection.1.1.1}{d\351finitions}{section.1.1}% 3
+\BOOKMARK [2][-]{subsection.1.1.2}{fen\352trage statistique}{section.1.1}% 4
+\BOOKMARK [2][-]{subsection.1.1.3}{l'algorithme plus proche voisin}{section.1.1}% 5
+\BOOKMARK [2][-]{subsection.1.1.4}{l'algorithme Joint Probabilistic Data Association Filter \(JPDAF\)}{section.1.1}% 6
+\BOOKMARK [3][-]{subsubsection.1.1.4.1}{l'algorithme PDAF}{subsection.1.1.4}% 7
+\BOOKMARK [4][-]{paragraph.1.1.4.1.1}{Principe}{subsubsection.1.1.4.1}% 8
+\BOOKMARK [4][-]{paragraph.1.1.4.1.2}{Forme de l'estimateur}{subsubsection.1.1.4.1}% 9
+\BOOKMARK [4][-]{paragraph.1.1.4.1.3}{Expression des probabilit\351s d'association}{subsubsection.1.1.4.1}% 10
+\BOOKMARK [3][-]{subsubsection.1.1.4.2}{extension au cas multi-cible : le JPDAF}{subsection.1.1.4}% 11
+\BOOKMARK [4][-]{paragraph.1.1.4.2.1}{Hypoth\351ses}{subsubsection.1.1.4.2}% 12
+\BOOKMARK [4][-]{paragraph.1.1.4.2.2}{Principe}{subsubsection.1.1.4.2}% 13
+\BOOKMARK [4][-]{paragraph.1.1.4.2.3}{Matrice d'association faisable}{subsubsection.1.1.4.2}% 14
+\BOOKMARK [4][-]{paragraph.1.1.4.2.4}{Indicateurs de d\351tection, d'association et de Fausse Alarme \(FA\)}{subsubsection.1.1.4.2}% 15
+\BOOKMARK [4][-]{paragraph.1.1.4.2.5}{Exemple}{subsubsection.1.1.4.2}% 16
+\BOOKMARK [3][-]{subsubsection.1.1.4.3}{expression des probabilit\351s d'associations conjointes}{subsection.1.1.4}% 17
+\BOOKMARK [4][-]{paragraph.1.1.4.3.1}{Fonction de vraisemblance des mesures}{subsubsection.1.1.4.3}% 18
+\BOOKMARK [4][-]{paragraph.1.1.4.3.2}{Probabilit\351 a priori d'un \351v\351nement k}{subsubsection.1.1.4.3}% 19
+\BOOKMARK [4][-]{paragraph.1.1.4.3.3}{Expression de la probabilit\351 d'association conjointe courante}{subsubsection.1.1.4.3}% 20
+\BOOKMARK [3][-]{subsubsection.1.1.4.4}{version param\351trique du JPDAF}{subsection.1.1.4}% 21
+\BOOKMARK [3][-]{subsubsection.1.1.4.5}{version non param\351trique du JPDAF}{subsection.1.1.4}% 22
+\BOOKMARK [3][-]{subsubsection.1.1.4.6}{\351quations de mise \340 jour et de pr\351diction}{subsection.1.1.4}% 23
+\BOOKMARK [3][-]{subsubsection.1.1.4.7}{bilan du JPDAF}{subsection.1.1.4}% 24
+\BOOKMARK [2][-]{subsection.1.1.5}{l'algorithme multi-hypoth\351se}{section.1.1}% 25
+\BOOKMARK [3][-]{subsubsection.1.1.5.1}{approche orient\351e piste}{subsection.1.1.5}% 26
+\BOOKMARK [3][-]{subsubsection.1.1.5.2}{d\351finition du score d'une piste}{subsection.1.1.5}% 27
+\BOOKMARK [3][-]{subsubsection.1.1.5.3}{ratio logarithmique des vraisemblances cumul\351es}{subsection.1.1.5}% 28
+\BOOKMARK [3][-]{subsubsection.1.1.5.4}{d\351finition d'une hypoth\350se d'association et \351valuation}{subsection.1.1.5}% 29
+\BOOKMARK [3][-]{subsubsection.1.1.5.5}{le ``NScan prunning''}{subsection.1.1.5}% 30
+\BOOKMARK [3][-]{subsubsection.1.1.5.6}{le ``merging'' de pistes}{subsection.1.1.5}% 31
+\BOOKMARK [3][-]{subsubsection.1.1.5.7}{bilan}{subsection.1.1.5}% 32
+\BOOKMARK [2][-]{subsection.1.1.6}{Pistage multi-cibles par PMHT}{section.1.1}% 33
+\BOOKMARK [2][-]{subsection.1.1.7}{le S-Dimensionnal Assignment \(SDA\) }{section.1.1}% 34
+\BOOKMARK [3][-]{subsubsection.1.1.7.1}{Principe de la m\351thode}{subsection.1.1.7}% 35
+\BOOKMARK [3][-]{subsubsection.1.1.7.2}{Notion de partition faisable des mesures}{subsection.1.1.7}% 36
+\BOOKMARK [3][-]{subsubsection.1.1.7.3}{Formulation du probl\350me}{subsection.1.1.7}% 37
+\BOOKMARK [3][-]{subsubsection.1.1.7.4}{Application de la relaxation lagrangienne pour S = 3}{subsection.1.1.7}% 38
+\BOOKMARK [3][-]{subsubsection.1.1.7.5}{bilan}{subsection.1.1.7}% 39
+\BOOKMARK [1][-]{section.1.2}{Pistage de cibles \351tendues}{chapter.1}% 40
+\BOOKMARK [2][-]{subsection.1.2.1}{Filtre mono-cible}{section.1.2}% 41
+\BOOKMARK [2][-]{subsection.1.2.2}{Formulation des ensembles finis al\351atoires pour le filtre multi-cible}{section.1.2}% 42
+\BOOKMARK [2][-]{subsection.1.2.3}{Densit\351 de Probabilit\351 \(Probability Hypothesis Density : PHD\)}{section.1.2}% 43
+\BOOKMARK [2][-]{subsection.1.2.4}{Mod\351lisation des cibles par m\351lange de Gaussiennes \(Gaussian Mixture Probability Hypothesis Density : GMPHD\)}{section.1.2}% 44
+\BOOKMARK [2][-]{subsection.1.2.5}{Mod\350le multi-cible lin\351aire gaussien}{section.1.2}% 45
+\BOOKMARK [2][-]{subsection.1.2.6}{Recursion du GMPHD}{section.1.2}% 46
+\BOOKMARK [2][-]{subsection.1.2.7}{Impl\351mentation}{section.1.2}% 47
+\BOOKMARK [3][-]{subsubsection.1.2.7.1}{Fen\352trage statistique}{subsection.1.2.7}% 48
+\BOOKMARK [2][-]{subsection.1.2.8}{R\351duction de la complexit\351}{section.1.2}% 49
+\BOOKMARK [3][-]{subsubsection.1.2.8.1}{S\351lection des gaussiennes}{subsection.1.2.8}% 50
+\BOOKMARK [3][-]{subsubsection.1.2.8.2}{Lab\351lisation}{subsection.1.2.8}% 51
+\BOOKMARK [2][-]{subsection.1.2.9}{Bilan}{section.1.2}% 52

@@ -1,0 +1,53 @@
+\babel@toc {french}{}
+\contentsline {chapter}{\numberline {1}état de l'art}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Pistage multi-de cibles résolues}{4}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}définitions}{4}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}fenêtrage statistique}{5}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}l'algorithme plus proche voisin}{7}{subsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.1.4}l'algorithme \acf {JPDAF}}{7}{subsection.1.1.4}%
+\contentsline {subsubsection}{\numberline {1.1.4.1}l'algorithme PDAF}{7}{subsubsection.1.1.4.1}%
+\contentsline {paragraph}{\numberline {1.1.4.1.1}Principe}{7}{paragraph.1.1.4.1.1}%
+\contentsline {paragraph}{\numberline {1.1.4.1.2}Forme de l'estimateur}{8}{paragraph.1.1.4.1.2}%
+\contentsline {paragraph}{\numberline {1.1.4.1.3}Expression des probabilités d'association}{9}{paragraph.1.1.4.1.3}%
+\contentsline {subsubsection}{\numberline {1.1.4.2}extension au cas multi-cible : le JPDAF}{11}{subsubsection.1.1.4.2}%
+\contentsline {paragraph}{\numberline {1.1.4.2.1}Hypothéses}{11}{paragraph.1.1.4.2.1}%
+\contentsline {paragraph}{\numberline {1.1.4.2.2}Principe}{11}{paragraph.1.1.4.2.2}%
+\contentsline {paragraph}{\numberline {1.1.4.2.3}Matrice d'association faisable}{12}{paragraph.1.1.4.2.3}%
+\contentsline {paragraph}{\numberline {1.1.4.2.4}Indicateurs de détection, d'association et de \acf {FA}}{13}{paragraph.1.1.4.2.4}%
+\contentsline {paragraph}{\numberline {1.1.4.2.5}Exemple}{13}{paragraph.1.1.4.2.5}%
+\contentsline {subsubsection}{\numberline {1.1.4.3}expression des probabilités d'associations conjointes}{15}{subsubsection.1.1.4.3}%
+\contentsline {paragraph}{\numberline {1.1.4.3.1}Fonction de vraisemblance des mesures}{15}{paragraph.1.1.4.3.1}%
+\contentsline {paragraph}{\numberline {1.1.4.3.2}Probabilité \textit {a priori} d'un événement $\Theta _k$}{16}{paragraph.1.1.4.3.2}%
+\contentsline {paragraph}{\numberline {1.1.4.3.3}Expression de la probabilité d'association conjointe courante}{16}{paragraph.1.1.4.3.3}%
+\contentsline {subsubsection}{\numberline {1.1.4.4}version paramétrique du \ac {JPDAF}}{17}{subsubsection.1.1.4.4}%
+\contentsline {subsubsection}{\numberline {1.1.4.5}version non paramétrique du \ac {JPDAF}}{17}{subsubsection.1.1.4.5}%
+\contentsline {subsubsection}{\numberline {1.1.4.6}équations de mise à jour et de prédiction}{17}{subsubsection.1.1.4.6}%
+\contentsline {subsubsection}{\numberline {1.1.4.7}bilan du \ac {JPDAF}}{17}{subsubsection.1.1.4.7}%
+\contentsline {subsection}{\numberline {1.1.5}l'algorithme multi-hypothése}{18}{subsection.1.1.5}%
+\contentsline {subsubsection}{\numberline {1.1.5.1}approche orientée piste}{19}{subsubsection.1.1.5.1}%
+\contentsline {subsubsection}{\numberline {1.1.5.2}définition du score d'une piste}{21}{subsubsection.1.1.5.2}%
+\contentsline {subsubsection}{\numberline {1.1.5.3}ratio logarithmique des vraisemblances cumulées}{22}{subsubsection.1.1.5.3}%
+\contentsline {subsubsection}{\numberline {1.1.5.4}définition d'une hypothèse d'association et évaluation}{22}{subsubsection.1.1.5.4}%
+\contentsline {subsubsection}{\numberline {1.1.5.5}le ``NScan prunning''}{23}{subsubsection.1.1.5.5}%
+\contentsline {subsubsection}{\numberline {1.1.5.6}le ``merging'' de pistes}{23}{subsubsection.1.1.5.6}%
+\contentsline {subsubsection}{\numberline {1.1.5.7}bilan}{25}{subsubsection.1.1.5.7}%
+\contentsline {subsection}{\numberline {1.1.6}Pistage multi-cibles par \ac {PMHT}}{26}{subsection.1.1.6}%
+\contentsline {subsection}{\numberline {1.1.7}le \acf {SDA} }{27}{subsection.1.1.7}%
+\contentsline {subsubsection}{\numberline {1.1.7.1}Principe de la méthode}{27}{subsubsection.1.1.7.1}%
+\contentsline {subsubsection}{\numberline {1.1.7.2}Notion de partition faisable des mesures}{29}{subsubsection.1.1.7.2}%
+\contentsline {subsubsection}{\numberline {1.1.7.3}Formulation du problème}{30}{subsubsection.1.1.7.3}%
+\contentsline {subsubsection}{\numberline {1.1.7.4}Application de la relaxation lagrangienne pour $S = 3$}{32}{subsubsection.1.1.7.4}%
+\contentsline {subsubsection}{\numberline {1.1.7.5}bilan}{35}{subsubsection.1.1.7.5}%
+\contentsline {section}{\numberline {1.2}Pistage de cibles étendues}{38}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Filtre mono-cible}{39}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Formulation des ensembles finis aléatoires pour le filtre multi-cible}{40}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Densité de Probabilité (Probability Hypothesis Density : PHD)}{41}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.4}Modélisation des cibles par mélange de Gaussiennes (Gaussian Mixture Probability Hypothesis Density : GMPHD)}{44}{subsection.1.2.4}%
+\contentsline {subsection}{\numberline {1.2.5}Modèle multi-cible linéaire gaussien}{44}{subsection.1.2.5}%
+\contentsline {subsection}{\numberline {1.2.6}Recursion du GMPHD}{45}{subsection.1.2.6}%
+\contentsline {subsection}{\numberline {1.2.7}Implémentation}{46}{subsection.1.2.7}%
+\contentsline {subsubsection}{\numberline {1.2.7.1}Fenêtrage statistique}{46}{subsubsection.1.2.7.1}%
+\contentsline {subsection}{\numberline {1.2.8}Réduction de la complexité}{47}{subsection.1.2.8}%
+\contentsline {subsubsection}{\numberline {1.2.8.1}Sélection des gaussiennes}{48}{subsubsection.1.2.8.1}%
+\contentsline {subsubsection}{\numberline {1.2.8.2}Labélisation}{48}{subsubsection.1.2.8.2}%
+\contentsline {subsection}{\numberline {1.2.9}Bilan}{48}{subsection.1.2.9}%

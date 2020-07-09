@@ -1,0 +1,2083 @@
+\documentclass[10pt,french,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{acronym}
+\usepackage{hyperref}
+\usepackage{amsthm,amsmath,amsfonts,amssymb}
+%\frenchbsetup{StandardLists=true}
+\usepackage{enumitem}
+\usepackage{algo}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{array}
+\usepackage{float} 
+\usepackage{here}
+\graphicspath{{images/}}
+\usepackage{ifpdf,epstopdf}
+\usepackage{hyperref}
+%\usepackage[square,numbers]{natbib}  %biblio par unité
+\usepackage[resetlabels,labeled]{multibib}
+%\usepackage{chapterbib}%biblio par unité
+\usepackage{color}
+
+
+\setcounter{secnumdepth}{5} 
+ \setcounter{tocdepth}{5}
+\author{Benjamin Pannetier}
+\begin{document}
+\begin{acronym}[H]
+%		\acro{ADS-B}    {Automatic dependent surveillance broadcast}
+%	 	\acro{AEKF}   	{Alternative Extended Kalman Filter}
+%	 	\acro{AFRL}		{Air Force Research Laboratory}
+%	 	\acro{AIS}		{Automatic Identification System}
+%	 	\acro{ANR}		{Agence Nationale de la Recherche}
+%	 	\acro{API}		{Application Programming Interface}
+% 	    \acro{BFT}      {Blue Force Tracking}
+% 	 	\acro{BCR}      {Borne de Cramer Rao}
+%	 	\acro{BPA}		{Basic Probability Assignment}
+%	 	\acro{bpa}		{Basic Probability Assignment}
+%	 	\acro{BOT}		{Bearing Only Tracking}
+%	 	\acro{C2}		{Command and Control station}
+ %	 	\acro{CMKF}		{Converted Measurement Kalman Filter}
+%	 	\acro{CA}		{Constant Acceleration}
+%    	\acro{CT}		{Coordinated Turn}
+%	 	\acro{CV}		{Constant Velocity}
+%	 	\acro{DRI}      {Détection Reconnaissance et Identification}
+%	 	\acro{DRIL}     {Détection Reconnaissance Identification et Localisation}
+%	 	\acro{DTED}		{Digital Terrain Elevation Data}
+	 	\acro{EKF} 		{Extended Kalman Filter}
+	 	\acro{EM}       {Expectation Maximization}
+	 	\acro{ENU}		{East North Up}
+	 	\acro{FA}       {Fausse Alarme}
+%	 	\acro{FKIE}{Fraunhofer Institute for Communication, Information Processing and Ergonomics}
+%	 	\acro{GIS} {Geographic Information System}
+ 	 	\acro{GMPHD}{Gaussian Mixture - Probability Hypothesis Density}
+ 	 	\acro{GMCPHD}{Gaussian Mixture Cardinalized -  Probability Hypothesis Density}
+%
+%	 	\acro{GPS}{Global Positionning System}
+%		\acro{GMTI}{Ground Moving Target Indicator}
+%		\acro{HORIZON}{Hélicoptère d'Observation Radar et d'Investigation de ZONe}
+%	 	\acro{IMM}{Interacting Multiple Model} 
+%		\acro{IGN}{Institut Géographique National} 
+	 	\acro{JPDAF}{Joint Probabilistic Data Association Filter}
+%	 	\acro{JSTARS}{Joint Surveillance Target Attack Radar System}
+%	 	\acro{LAD}{Lutte Anti Drone}
+		\acro{NNSF}{Nearest Neighboor Standard Filter}
+%		\acro{MCT}{Modèle des Croyances Transférables}	
+%		\acro{MAP}{Maximum A Posteriori}
+%		\acro{MCMC}{Markov Chain Monte Carlo}
+%		\acro{MLM PF}{Multiple Likelihood Particle Filter}
+ 		\acro{MMSE}{Minimum Mean Square Error}
+%		\acro{MNT}{Modèle Numérique de Terrain}
+ 	 	\acro{MHT}{Multiple Hypotheses Tracking}
+ 	 	\acro{MTT}{Multiple Target Tracking}
+%		\acro{MRU}{Mouvement Rectiligne Uniforme}
+%	 	\acro{MMSE}{Minimum Mean Square Error}
+%		\acro{MTPF}{Multiple Target Tracking Particle Filter}
+%		\acro{MV}{Maximum de Vraisemblance}
+%	 	\acro{MOP}{Measure Of Performance}
+%	 	\acro{MP-EKF}{Modified Polar Extended Kalman Filter}
+%		\acro{NASA}{NAtional Space Agency}
+%	 	\acro{NNSF}{Near Neighboor Standard Filter}
+%	 	\acro{NWZ}{North West Z}
+ 	 	\acro{ONERA}{Office National d'Etudes et de Recherches Aérospatiales}
+% 	 	\acro{OTAN}{Organisation du Traité de l'Atlantique Nord}
+%	 	\acro{OOSM}{Out Of Sequence Measurement}
+%	 	\acro{OSPA}{Optimal Subpattern Assignment}
+%	 	\acro{PCRB}{Posterior Cramer-Rao Bounds}
+	 	\acro{PDAF}{Probabilistic Data Association Filter}
+	 	\acro{PDA-FPF}{Probabilistic Data Association-Feedback Particle Filter}
+%		\acro{PF}{Particul Filter}
+		\acro{PMHT}{Probabilistic Multiple Hypotheses Tracker}
+ 	 	\acro{PHD}{Probability Hypothesis Density}
+%%	 	\acro{BDTOPO}{Base de Donn\'{e}es TOPOgraphiques}
+%%	 	\acro{DSmT} {Dezert-Smarandache Theory}
+%%	 	\acro{HRRR}{High Range Radial Resolution}	 	
+%%	 	\acro{JBPDAF}{Joint Belief Probabilistic Data Association Filter}
+%%	 	\acro{LLR}{Log-Likelihood Ratio}
+% 		\acro{MTI}{Moving Target Indicator}
+%%		\acro{MTL}{Mean Track Life} 
+%%		\acro{NATO}{North ATlantic Organization}
+%%		\acro{PCC}{Percentage of Correct Classification}
+%%	    \acro{RSS SPRT}{Road Set Segment based on Sequential Probability Ratio Test}	
+%%	    \acro{RTS}{Rauch Tung Striebel}	
+ 	    \acro{RFS}{Random Finite Set}		
+%%		\acro{SNR}{Signal to Noise Ratio}
+%%		\acro{SPRT}{Sequential Probability Ratio Test}
+%		\acro{RBMCDA}{Rao-Blackwellized Monte Carlo Data Association}
+%		\acro{RMA}{Rapports de Mesures Associées}
+%		\acro{SAFIR-NG}{Système onerA de Fusion d'Information dédié aux Réseaux de capteurs - Nouvel Génération}
+ 		\acro{SDA}{S-Dimensionnal Assignment}
+%		\acro{SER}{Surface équivalente Radar}
+ %		\acro{SIR}{Sequential Importance Resampling}
+% 		\acro{SIG}{Système d'Information Géographique}
+% 		\acro{SIS}{Sequential Importance Sampling}		
+%		\acro{SITAC}{SItuation TACtique}
+%		\acro{SVM}{Support Vector Machine}
+% 		\acro{TGL}{Trièdre Géographique Local}
+ 		\acro{TOMHT}{Track Oriented Multiple Hypothesis Tracker}
+% 		\acro{UKF}{Unscented Kalman Filter}
+% 		\acro{UT}{Unscented Transformation}
+% 		\acro{UTM}{Universal Transverse Mercator}
+%%		\acro{T2TA}{Track-to-track association}
+%		\acro{TCF}{Topographic Coordinate Frame}
+%%	    \acro{TSA}{Track Segment Association}	 
+%%	    \acro{TSP}{Track Segment Purity} 
+%	    \acro{UAV}{Unnamed Aerial Vehicle}  
+%	    \acro{UGS}{Unattended Ground Sensor}
+%		\acro{VS IMM}{Variable Structure Interacting Multiple Model}
+%		\acro{VS IMMC}{Variable Structure Interacting Multiple Model under Constraint}
+%		\acro{WND}{West North Down}
+%		\acro{WGS84}{World Geodetic System 1984}
+ \end{acronym}
+ \tableofcontents
+\chapter{état de l'art}
+ 
+
+
+%Le plus courant
+%Les approches du MTT sont les suivantes:
+%
+%  Multiple Hypothesis Tracking (MHT) [23], [106], [154],
+%  Joint Probabilistic Data Association (JPDA) [4], [6], [61],
+%  Probabilistic Multiple Hypothesis Tracking (PMHT)
+%[177], [203], and
+%  Random Finite Sets (RFS) approaches [125], [127].
+%
+%Dans le MHT orienté hypothèse [154] et le MHT orienté piste
+%[106], le rapport de probabilité et log-vraisemblance d'une piste,
+%respectivement, sont calculés de manière récursive. Les approches de type JPDA
+%mélanger les probabilités d'association de données sur un balayage par balayage
+%base. L'approche PMHT permet des mesures multiples
+%affectations au même objet1, ce qui se traduit par une efficacité
+%méthode utilisant le framework Expectation-Maximization (EM),
+%voir, par exemple, [22, Ch. 9]. Les approches de type RFS reposent sur
+%modélisation des objets et des mesures sous forme d'ensembles aléatoires.
+%Un récent article de synthèse sur MTT, avec un accent principal sur
+%les petits objets dits ponctuels sont donnés dans [197].
+%Aujourd'hui, il existe encore une grande variété d'applications pour lesquelles
+%les hypothèses de «petit objet» sont raisonnables. Cependant, en raison
+%aux progrès rapides de la technologie des capteurs ces dernières années,
+%devient de plus en plus courant que les objets occupent plusieurs
+%cellules de résolution du capteur. En outre, de nouvelles applications avec
+%objets dans le champ proche de capteurs, par exemple en robotique mobile
+%et la conduite autonome, rendent souvent le «petit objet»
+%hypothèses invalides.
+%Le suivi d'un objet qui pourrait occuper plus d'un
+%cellule de capteur conduit à ce qu'on appelle le suivi d'objet étendu ou
+%problème de suivi de cible étendu. Dans le suivi d'objet étendu
+%les objets donnent lieu à un nombre variable de bruits potentiellement bruyants
+%mesures à partir de différentes mesures réparties spatialement
+%sources, également appelées points de réflexion. La forme
+%de l'objet est généralement inconnu et peut même varier dans le temps,
+%et l'objectif est de déterminer récursivement la forme du
+%objet plus ses paramètres cinématiques. En raison de la non-linéarité
+%du problème d'estimation résultant, qui suit déjà un seul
+%objet étendu est en général un problème très complexe pour
+%qui nécessitent des techniques d'estimation non linéaires élaborées.
+%Bien que souvent mal compris - suivi étendu des objets,
+%tel que défini ci-dessus, est fondamentalement différent de la
+%problèmes de suivi des contours en vision par ordinateur [212]. En vision
+%suivi de contour [212], un rouge-vert-bleu (RVB) complet
+%l'image est disponible à chaque intervalle de temps et on extrait un
+%contour de chaque image qui est suivie dans le temps. En extension
+%suivi d'objets, on travaille avec quelques-uns (généralement deux ou trois dimensions)
+%mesures par pas de temps, c'est-à-dire un point clairsemé
+%
+%nuage. Il est presque toujours impossible d'extraire une forme uniquement
+%basé sur la mesure d'un instant. L'objet
+%la forme ne peut être déterminée que si des mesures sur plusieurs
+%les pas de temps sont systématiquement accumulés et fusionnés sous
+%incorporation du mouvement de l'objet (inconnu) et du capteur
+%bruit. Une illustration de la différence entre un objet ponctuel
+%suivi, suivi étendu des objets et suivi des contours est
+%donné à la figure 1.
+%Dans de nombreuses applications pratiques, il est nécessaire de suivre plusieurs objets étendus, où aucune mesure à objet
+%des associations sont disponibles. Malheureusement, l'association de données devient
+%encore plus difficile dans plusieurs objets étendus
+%le suivi étant donné qu'un grand nombre d'événements associatifs sont possibles:
+%toutes les partitions possibles de l'ensemble de mesures doivent être
+%énuméré, suivi de toutes les façons possibles d'attribuer la partition
+%cellules pour objecter les estimations. Le premier calcul possible
+%des algorithmes de suivi d'objets multi-étendus ont récemment été
+%développé, et s'appuyer sur des approximations du partitionnement
+%problème dans le contexte des RFS.
+%L'objectif de cet article est de
+%(i) fournir une introduction détaillée et à jour au
+%problème de suivi d'objet étendu,
+%(ii) introduire des concepts, modèles et méthodes de base pour la forme
+%estimation d'un seul objet étendu,
+%(iii) présenter les concepts, modèles et méthodes de base pour
+%suivi de plusieurs objets étendus,
+%(iv) souligner les applications récentes et les tendances futures.
+%Historiquement, les premiers travaux sur le suivi d'objets étendu peuvent
+%être retracée à [42], [43]. Déjà en 2004, [199] a donné
+%un bref aperçu de la littérature sur le suivi des grappes (groupes) et
+%problèmes de suivi d'objets étendus. Cependant, depuis lors, d'énormes
+%des progrès ont été réalisés dans l'estimation de la forme d'une seule
+%suivi d'objets et d'objets multiples (étendus). Un aperçu
+%des méthodes Monte Carlo Séquentiel (SMC) pour les groupes et
+%le suivi étendu des objets peut être trouvé dans [132]. La mise au point
+%de [132] repose sur le suivi des objets de groupe et les méthodes SMC.
+%Par conséquent, le contenu de [132] est orthogonal à cet article, et
+%les deux articles se complètent. Une comparaison de
+%premières versions de la matrice aléatoire et de l'hypersurface aléatoire
+%approche a été réalisée en [17]. Depuis la publication du [17],
+%les deux méthodes ont été considérablement développées.
+%
+%Multiple Hypothesis tracking
+%
+%Joint Probabilistic Data Assoctaion Filter
+%
+%SD-Assignment 
+%
+%Probabilstic Multiple Hypothesis 
+%
+%PHD 
+%
+%Random Finite Sets  
+							
+			%===================================
+			% Pistage multi-cible et mono-capteur
+			%==================================
+									\section{Pistage multi-de cibles résolues}
+						\label{chap:pistagemulti}
+						La trajectographie multi-cible, \ac{MTT} en anglais, désigne le processus permettant de déterminer successivement les états cinématiques de plusieurs cibles basés sur des mesures bruitées des capteurs. 
+
+Les méthodes de pistage multi-cible sont une technologie clé pour de nombreuses applications techniques dans des domaines tels que la robotique, la surveillance, le médical, la conduite autonome, l'automatisation des réseaux.
+			
+									Dans cette partie, nous abordons la problématique de pistage multi-cible d'objets \textbf{résolues}. On appelle un objet résolu, une cible qui ne produira qu'au plus détection par cycle radar ou cycle de traitement vidéo. En effet dans le rapport \cite{ONERA2020}, nous avons présenté un ensemble d'algorithmes permettant d'estimer la trajectoire d'une cible à l'aide d'un capteur. Cependant, les capteurs sont ce qu'ils sont et bien souvent les mesures déjà bruitées sont accompagnées d'autres mesures qui sont soient des fausses alarmes, soient des mesures associées à d'autres cibles.  
+									
+									Dans ce chapitre, nous présentons les techniques permettant de pallier la problématique d'association de pistes aux mesures pour assurer la trajectographie multi-cible. Dans une première partie nous présenterons des techniques pour réduire le nombre d'association faisable entre une piste et un ensemble de mesures. Une association faisable étant une possibilité de mettre à jour un état prédit avec une mesure. Puis nous nous intéresserons aux techniques usuelles de pistage multi-cible regroupée par famille : le \acf{JPDAF}, le \acf{MHT}, le \acf{SDA} et le \acf{PMHT}.
+									
+									
+									\subsection{définitions}
+									\label{mult:definitions}
+									Nous appellerons $m_k$ le nombre de mesures à l'instant $k$, $Z^k$ la séquence de mesures jusqu'à l'instant $k$, $Z(k)$, l'ensemble des mesures à l'instant $k$ tel que:
+							\begin{equation} 
+							Z(k) = \{ \mathbf{z}^1_k, \ldots, \mathbf{z}^{m_k}_k\}						
+							\end{equation}	
+									Nous noterons également $\mathcal{T}^{k,l}$ une piste $l$ parmi $N_c^k$ pistes établies à l'instant $k$. Une piste est associée à une séquence de couple d'états et de covariances associées :
+									\begin{equation} 
+									\mathcal{T}^{k,l} = \{ (\hat{\mathbf{x}}^n_{k|k},\mathbf{P}^n_{k|k}), \mathcal{T}^{k-1,s}, (\forall n \in \{1,\ldots,N_c^k\})( \forall s \in \{1,\ldots,N_c^{k-1}\} )\}			 						
+							\end{equation}								
+				On associera également un label à la piste tel que $\{\exists u \in \mathbb{N})\}$: 
+									 
+													\begin{equation} 
+									\mathcal{T}^{k,l} = \{ \mathcal{L}_u, (\hat{\mathbf{x}}^n_{k|k},\mathbf{P}^n_{k|k}), \mathcal{T}^{k-1,s}, (\forall n \in N_c^k)( \forall s \in N_c^{k-1} )\}			 						
+							\end{equation}		
+									
+									Plusieurs pistes peuvent avoir le même label en fonction de l'algorithme utilisé. 
+
+Pour soulager les notations on simplifiera la notation de la piste $\mathcal{T}^{k,l}$ par $\mathcal{T}^{l} \triangleq	\mathcal{T}^{k,l}$.								
+									
+									\subsection{fenêtrage statistique}
+									\label{SectionFenetrageStat}
+									Dans un environnement dégradé, à chaque instant $k$ on dispose généralement d'un ensemble  $Z(k)$ de mesures délivrées par le capteur. Nous écartons ici le cas des cibles étendues ou faiblement résolues (la taille des cibles est inférieure à la cellule de résolution du senseur).  
+		Certaines de ces mesures $\mathbf{z}^i_k (\forall i \in \{1,\ldots,m_k\})$ proviennent des cibles (lorsqu'elles sont détectées) et d'autres proviennent de bruits liées au récepteur (réglage des seuils), à l'environnement (trajets multiples, ``clutter'',
+		\textit{etc}) et/ou à des phénomènes intentionnels comme par exemple le ``leurrage'' ou les contre-mesures
+		électroniques (ECM - Electronic Counter Measures). Toutes les mesures ne provenant pas des cibles sont
+		considérées ici comme des fausses alarmes (FA).
+		Pour limiter le nombre de mesures à traiter, on utilise généralement une technique de sélection des
+		mesures appelée fenêtrage statistique ou test de validation   ( ou ``gating''). Pour chaque cible,
+		Le fenêtrage consiste à délimiter, à partir de la mesure prédite $\hat{\mathbf{z}}_{k|k-1}$  et de la covariance prédite $\mathbf{S}_k$
+		de l'erreur prédiction de mesure, un certain volume $V_k$ de l'espace d'observation où la mesure de la cible à une forte probabilité $Pg$ de se trouver. Les mesures statistiquement trop éloignées de la mesure prédite
+		par le système de poursuite sont ainsi éliminées pour réduire le nombre de mesures à traiter au niveau des algorithmes de pistage. 
+		
+		Pour une piste $\mathcal{T}^l$ associée à un état prédit $\hat{\mathbf{x}}_{k|k-1}^l$ on rappel que l'innovation se note dans un cas totalement linéaire:
+		
+		 					\begin{equation} 
+							\nu_k^i =   \mathbf{z}^i_k - \mathbf{H}_k\hat{\mathbf{x}}_{k|k-1}^l
+							\end{equation}	
+						avec sa covariance associée:
+			 					\begin{equation} 
+							\mathbf{S}_k^i =   \mathbf{H}_k \mathbf{P}_{k|k-1}^l \mathbf{H}_k' + \mathbf{R}_k^i
+							\end{equation}				
+		
+		La vraisemblance quant à elle se note:
+			 					\begin{equation} 
+		 p\{ \mathbf{z}^i_k | Z^{k-1}\} = \mathcal{N}(\nu_k^i, \mathbf{S}_k^i)
+							\end{equation}
+							
+		La probabilité de fenêtrage $Pg$  représente la probabilité qu'une mesure tombe dans au voisinage de l'état prédit $\hat{\mathbf{x}}_{k|k-1}^l$ ou dans une fenêtre de validation.  
+		
+		Il vient :
+			 					\begin{equation} 
+		Pg = P\{\mathbf{z}^i_k \in V(k,\gamma)\}
+							\end{equation}
+où $\gamma$ représente la taille de la fenêtre de validation. Le volume quant à lui s'exprime par la relation suivante:
+			 					\begin{equation} 
+		  V(k,\gamma) = c_{nz}|\gamma \mathbf{S}_k^i |^{1/2}
+							\end{equation}
+où $nz$ est la dimension du vecteur de mesure et $c_{nz}$ est le volume de l'hypersphère unité fonction de la dimension du vecteur de mesure tel que:
+		
+			 					\begin{equation} 
+		  c_{nz} = \frac{\pi^{nz/2}}{\Gamma(nz/2+1)}
+							\end{equation}
+		
+		Pour $nz = 1,\ldots,4$ nous obtenons:
+			 					\begin{align}
+		  c_{1} &= 2 \\ c_{2} &=\pi \\ c_3  &= \frac{4}{3}\pi\\ c_4  &= \frac{1}{2}\pi^2   
+							\end{align}
+		
+		Une autre forme pour assurer le fenêtrage statistique consiste à calculer la distance de Mahanalobis. Le test à venir devient tout simplement :
+		
+		 	 					\begin{equation} 
+		 T(\mathcal{T}^l,\mathbf{z}_k^i) = \left\{  \begin{aligned} \text{validation de la mesure si } & \nu_k^{i'}{\mathbf{S}_k}^{-1}\nu_k^i \leq \gamma \\
+		 \text{mesure non validée} & 
+		 \end{aligned} \right.
+					 	\end{equation}	
+		Le seuil $\gamma$ est bien entendu obtenu par un test du chi2 et le nombre de degrés de liberté de telle sorte que ce seuil soit défini suivant la probabilité $Pg$ fixée par l'utilisateur. Pour une $Pg$ fixée, on a :
+		
+		\begin{equation} 
+	 	Pg = P\{\mathbf{z}^i_k \in V(k,\gamma)\} \Leftrightarrow Pg = P\{ \nu_k^{i'}{\mathbf{S}_k}^{-1}\nu_k^i \leq \gamma \}
+	 	\end{equation} 
+	 	
+	 	N'oubliez pas que la table du Chi2 est définie de la manière suivante
+	 		\begin{equation} 
+	  P\{ \nu_k^{i'}{\mathbf{S}_k}^{-1}\nu_k^i \geq \gamma \} = 1 - Pg
+	 	\end{equation}
+	 	Vous obtiendrez ainsi $\gamma$ en regardant les tables du Chi2.
+	 	
+	 	Un autre test méconnu et pourtant performant proposé par Kirubarajan \textit{et al.} dans \cite{Kirubarajan00}, consiste à regarder la compatibilité vitesse et position au regard de la covariance prédite. Soit $v_{max}$ la vitesse maximale autorisée pour une cible (cette vitesse maximale peut dépendre du modèle stochastique considéré), $\mathbf{P}(xx)_{k|k-1}^l$, $\mathbf{P}(yy)_{k|k-1}^l$ les composantes positions de la covariance prédite de la piste $\mathcal{T}^l$ et $\hat{\mathbf{x}}(x)_{k|k-1}^l$, $\hat{\mathbf{x}}(y)_{k|k-1}^l$ les composantes positions de l'état prédit de cette même piste. 
+	 	
+	 	Une mesure est validée  $\mathbf{z}^i_k (\forall i \in \{1,\ldots,m_k\})$ si et seulement si:
+	 	
+		\begin{equation} 
+	   T(\mathcal{T}^l,\mathbf{z}_k^i) =  \left\{  
+	   \begin{aligned} \text{validation de la mesure si } & \begin{aligned} \mathbf{z}^i_k(x) - \hat{\mathbf{x}}(x)_{k|k-1}^l   \leq \textit{T}v_{max} +  2  \sqrt{\mathbf{P}(xx)_{k|k-1}^l}& \\ \mathbf{z}^i_k(y) -\hat{\mathbf{x}}(y)_{k|k-1}^l  \leq \textit{T}v_{max} + 2  \sqrt{\mathbf{P}(yy)_{k|k-1}^l} &  \end{aligned}   \\
+	   \text{mesure non validée } &
+	    \end{aligned} \right.
+	 	\end{equation} 	
+où $(\mathbf{z}^i_k(x),\mathbf{z}^i_k(y))$ sont les composantes positions du vecteur de mesure et $T$ la période d'échantillonnage.
+	 	
+									\subsection{l'algorithme plus proche voisin}
+									
+									Le Filtre \acf{NNSF} consiste à utiliser uniquement à chaque instant
+	$k$ la mesure validée $\mathbf{z}_k^i$, $(\forall i \in \{1,\ldots,m_k\})$, la plus proche de la mesure prédite $ \mathbf{z}^l_{k|k-1}$ de la cible  pour mettre à jour l'état de la piste. Le filtre de poursuite consiste généralement en un filtre de Kalman standard (KF)
+	ou étendu \acf{EKF} selon le type de modèle utilisé.
+	La notion de proximité à la prédiction est basée sur la valeur de l'innovation normalisée définie par:
+	
+	 	 					\begin{equation}
+	 	 					(\forall i \in \{1,\ldots,m_k\}),  
+	\epsilon_i =\nu_k^{i'}{\mathbf{S}_k^i}^{-1}\nu_k^i
+							\end{equation}
+	
+la mesure la plus proche $\mathbf{z}_k^{nnsf}$, utilisée pour mettre à jour la piste, sera la mesure qui minimisera cette distance soit:
+	
+	 	 					\begin{equation}
+	 	 					\mathbf{z}_k^{nnsf} = \arg\min\{ \epsilon_i \},  (\forall i \in \{1,\ldots,m_k\})
+							\end{equation} 
+							
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{NNSF.png}
+\caption{Approche \acf{NNSF}. A partir de l'état prédit $\hat{\mathbf{x}}_{k_k-1}^2$ de la piste $\mathcal{T}^2$, l'algorithme calcule les distance statistique $\epsilon_1$ et $\epsilon_2$ entre chaque mesure validée par le fenêtrage statistique pour ne retenir que la mesure la plus vraisemblable.}
+\label{fig:NNSF} 
+\end{center}
+\end{figure}
+
+							
+							
+							
+							Bien que très simple à mettre en \oe uvre (figure \ref{fig:NNSF}), cette méthode conduit à des performances très médiocres de pistage quand la densité de fausses alarmes est importante. \textbf{Elle est donc fortement déconseillée}.		
+									
+							
+									\subsection{l'algorithme \acf{JPDAF}}
+									\subsubsection{l'algorithme PDAF}
+			
+  
+			
+			\paragraph{Principe}
+			Le principe du \acf{PDAF}, comme décrit dans \cite{BarShalom2009},  consiste à pallier le problème d'association d'une piste à une mesure dans un contexte riche en fausses alarmes. L'idée repose sur le création d'un état estimé qui est ni plus ni moins la somme probabilisé par l'ensemble des états estimés ``possibles'' (\textit{i.e.} résultant de la mise à jour de l'état prédit avec toutes les mesures validées).  
+			
+			La première étape consiste à réduire le nombre d'association possibles en sélectionnant un ensemble de mesures candidat à la mise à jour de la piste (\textit{i.e.} des mesures susceptible d'être à l'origine de la cible traquée). 
+			Soit $\mathcal{Z}(k)$ l'ensemble des mesures validées à l'instant $k$ par le test statistique présenté précédemment. Il vient:
+				 	 					\begin{equation}
+		 	 					\mathcal{Z}(k) = \{ \epsilon_i \leq \gamma, 	 					\forall i \in \{1,\ldots,m_k\}\}
+							\end{equation}	
+			On rappelle que $m_k$ est le nombre de mesures à l'instant $k$. En supposant que la cible est perceptible par le capteur à chaque instant (dans le sens où il n'y a pas de masque ou zone de non détection), il existe alors $m_k+1$ hypothèses d'association possibles concernant l'origine des mesures. Ces hypothèses sont caractérisées par les événements:
+			
+			\begin{equation}
+	\left\{ \begin{aligned}
+	\theta_0(k) &=\textit{ aucune mesure n'est issue de la cible},\\
+	\theta_i(k) &=\textit{ la $i^{ème}$ mesure est issue de la cible}
+	\end{aligned}
+	\right.
+	\end{equation}
+			Le but du \ac{PDAF} consiste à calculer la probabilité de réalisation de ces événements en déduire l'estimateur moyen. 
+			
+			\paragraph{Forme de l'estimateur}
+	Pour une piste $\mathcal{T}^l$, l'estimateur \ac{PDAF} classique est donné par la moyenne conditionnelle basée sur l'ensemble des mesures validées $\mathcal{Z}(k)$ depuis l'instant initial (la genèse de la piste) jusqu'à l'instant $k$ que l'on note usuellement $\mathbf{Z}^{k,l}$. L'estimateur optimal s'écrit donc, au sens des \acf{MMSE}, de la manière suivante $(\forall i \in \{0,\ldots,m_k\})$	:
+	
+	\begin{eqnarray}
+				\begin{aligned}
+				\hat{\mathbf{x}}_{k|k} &= \sum^{m_k}_{i=0} P\{\theta_i(k) | \mathbf{Z}^{k,l}\}\mathbb{E}[\mathbf{x}_k| \mathbf{Z}^{k,l} ,\theta_i(k) ]\\
+				\hat{\mathbf{x}}_{k|k} &= \sum^{m_k}_{i=0} \beta_i(k)\hat{\mathbf{x}}_{i,k|k}
+				\end{aligned}
+			\end{eqnarray}
+	avec $\beta_i(k) = P\{\theta_i(k)| \mathbf{Z}^{k,l} \}$ et $\hat{\mathbf{x}}_{i,k|k}$ donnés par :
+	\begin{equation}
+	\left\{ \begin{aligned}
+	\hat{\mathbf{x}}_{i,k|k} &  = \hat{\mathbf{x}}_{k|k-1} + \mathbf{K}_k\nu_{i,k},(\forall i \in \{1,\ldots,m_k\}) \\
+	\hat{\mathbf{x}}_{0,k|k} & = \hat{\mathbf{x}}_{k|k-1}, i = 0
+	\end{aligned} \right.
+	\end{equation}
+	oé $\mathbf{K}_k$ est le gain de Kalman, $\nu_{i,k}$ est l'expression de l'innovation associée à la mesure $\mathbf{z}_k^i$ et $\hat{\mathbf{x}}_{k|k-1}$ est l'expression de la prédiction pour rappelle. 
+			
+			Les équations de mise à jour de l'estimateur du \acf{PDAF} et de sa covariance associée sont fournies par:
+			
+	\begin{equation}
+	\hat{\mathbf{x}}_{k|k}   = \hat{\mathbf{x}}_{k|k-1} + \mathbf{K}_k\sum^{m_k}_{i=1} \beta_i(k)\tilde{\mathbf{z}}_i(k)
+	\end{equation}
+	
+	\begin{equation}
+	 \mathbf{P}_{k|k}   = \beta_0(k) \mathbf{P}_{k|k-1}  + (1-\beta_0(k) )\mathbf{P}^c_{k} + \tilde{\mathbf{P}}_{k} 
+	\end{equation}
+	avec
+	\begin{equation}
+	\mathbf{P}^c_{k}    = [id - \mathbf{K}_k\mathbf{H}_k] \mathbf{P}_{k|k-1}   
+	\end{equation}
+	et
+	\begin{equation}
+	\tilde{\mathbf{P}}_{k}    = \mathbf{K}_k [\sum^{m_k}_{i=1} \beta_i(k) \tilde{\mathbf{z}}_i(k)\tilde{\mathbf{z}}_i(k)'  - \tilde{\mathbf{z}}(k)\tilde{\mathbf{z}}(k)'  ]\mathbf{K}_k'  
+	\end{equation}
+	où
+	\begin{equation}
+	\mathbf{K}_k =  \mathbf{P}_{k|k-1} \mathbf{H}_k' \mathbf{S}_k^{-1}
+	\end{equation}
+	avec pour nouvelle notation sur l'innovation:
+	\begin{equation}
+	\tilde{\mathbf{z}}_i(k) = \mathbf{z}^i_{k} - \hat{\mathbf{z}}_{k|k-1}
+	\end{equation}
+	et
+	\begin{equation}
+	\tilde{\mathbf{z}}(k) =\sum^{m_k}_{i=1} \beta_i(k) \tilde{\mathbf{z}^i_{k}}
+	\end{equation}
+	
+Cependant ces équations impliquent que la covariance sur le bruit de mesure $\mathbf{R}_k$ soient constantes impliquant  la constance sur la covairance de l''innovation $\mathbf{S}_k$. Or, en fonction du type de capteur ce n'est pas forcément le cas. C'est pourquoi nous pouvons ramener le calcul de la covariance à sa plus simple expression:
+	\begin{equation}
+	 \mathbf{P}_{k|k}   =  \sum^{m_k}_{i=0}\beta_i(k) (\mathbf{P}_{i,k|k} + \hat{\mathbf{x}}_{i,k|k}\hat{\mathbf{x}}_{i,k|k}') -    \hat{\mathbf{x}}_{k|k}\hat{\mathbf{x}}_{k|k}'
+	\end{equation}
+	
+	Il reste désormais à calculer les probabilités d'association.
+	
+	\paragraph{Expression des probabilités d'association}
+	 Pour terminer la construction du filtre d'association probabiliste de données, on doit calculer les probabilités \textit{a posteriori} de l'origine des mesures données par:
+	 
+	 \begin{equation}
+	\beta_i(k) = P\{\theta_i(k) | \mathbf{Z}^{k,l}\} = P\{\theta_i(k) | \mathbf{Z}^{k-1,s},\mathbf{z}_{k}^i \}, (\forall i \in \{0,\ldots,m_k\})
+	\end{equation}
+	
+	Par ailleurs, la connaissance de l'ensemble des mesures validées $\mathbf{Z}(k) $ suppose implicitement la connaissance du nombre de mesures validées $m_k$. On peut donc naturellement introduire le terme $m_k$ dans l'expression précédente :
+	 \begin{equation}
+	\beta_i(k) = P\{\theta_i(k) | \mathbf{Z}^{k-1,s-1},\mathbf{z}_k^i,m_k \} , (\forall i \in \{0,\ldots,m_k\})
+	\end{equation}
+	
+	En utilisant la règle de décomposition bayésienne, il vient:
+	 \begin{equation}
+	\beta_i(k) = \frac{1}{c} P\{\mathbf{z}_k^i| \mathbf{Z}^{k-1,s},m_k \theta_i(k) \} P\{\theta_i(k)| \mathbf{Z}^{k-1,s},m_k  \}, (\forall i \in \{0,\ldots,m_k\}) 
+	\end{equation}
+	oé $c$ est la constante de normalisation définie par:
+	 \begin{equation}
+	c \ = \sum_{i=0}^{m_k} P\{\mathbf{z}_k^i| \mathbf{Z}^{k-1,s},m_k \theta_i(k) \} P\{\theta_i(k)| \mathbf{Z}^{k-1,s},m_k  \} 
+	\end{equation}
+	
+	En supposant la densité de probabilité de la mesure correcte (\textit{i.e.} provenant de la cible), normale centrée sur la mesure prédite $\hat{\mathbf{z}}_{k|k-1}^i$ et de covariance $\mathbf{S}_k^i$ et les fausses alarmes indépendantes de la cible et uniformément réparties dans la fenêtre de validation $V_k$, on obtient:
+	
+	 \begin{equation}
+	P\{\mathbf{z}_k^i| \mathbf{Z}^{k-1},m_k \theta_i(k) \} = \left\{ \begin{aligned}
+	 V_k^{-m_k+1} P_g^{-1}\mathcal{N}(\hat{\mathbf{z}}_{k|k-1}^i;0;\mathbf{S}_k^i) &,(\forall i \in \{1,\ldots,m_k\}) \\
+	 V_k^{-m_k} &, i = 0
+	\end{aligned} \right.
+	\end{equation}
+	
+	Les probabilités \textit{a priori} d'association $P\{\theta_i(k)| \mathbf{Z}^{k-1,s},m_k  \}$sont données par:
+	 \begin{equation}
+	P\{\theta_i(k)| \mathbf{Z}^{k-1,s},m_k  \} = \left\{ \begin{aligned}
+	\frac{P_dP_g}{c_1 m_k} &,(\forall i \in \{1,\ldots,m_k\}) \\
+	\frac{\mu_F(m_k)}{c_1 \mu_F(m_k-1)}(1-P_dP_g) &, i = 0
+	\end{aligned} \right.
+	\end{equation}
+	avec $c_1 = P_dP_g+(1-P_dP_g)\frac{\mu_F(m_k)}{\mu_F(m_k-1)}$ et où $\mu_F(\cdot)$ est la masse de la probabilité du nombre de fausses alarmes validées. Les variables $P_d$ et $P_g$ représentent respectivement la probabilité de détection du capteur ainsi que la probabilité de fenêtrage choisie pour le test de validation des mesures. 
+	
+	Il existe deux versions du \acf{PDAF} qui correspondant à deux modes de calcule de la masse $\mu_F(\cdot)$. 
+	
+	\begin{itemize}
+	\item[-] Version paramétrique du \acf{PDAF} : si on suppose que $\mu_F(\cdot)$  suit une loi de Poisson de paramètre $\lambda V_k$ (où $\lambda$ est la densité spatiale de fausses alarmes) qui s'exprime par :
+	 \begin{equation}
+	\mu_F(m_k) = \frac{{\lambda V_k}^{m_k}}{m_k!}e^{-\lambda V_k}
+	\end{equation}
+	alors
+	 \begin{equation}
+	P\{\theta_i(k)| \mathbf{Z}^{k-1,s},m_k  \} = \left\{ \begin{aligned}
+	\frac{P_dP_g}{P_dP_gm_k+(1-P_dP_g)\lambda V_k} &,(\forall i \in \{1,\ldots,m_k\}) \\
+	\frac{(1-P_dP_g)\lambda V_k}{P_dP_gm_k+(1-P_dP_g)\lambda V_k}  &, i = 0
+	\end{aligned} \right.
+	\end{equation}
+	\item[-] Version non paramétrique du \acf{PDAF} : si on suppose que $\mu_F(\cdot)$  suit une loi de uniforme de paramètre $\epsilon$  les probabilités d'association a priori s'expriment par:
+	 \begin{equation}
+	P\{\theta_i(k)| \mathbf{Z}^{k-1,s},m_k  \} = \left\{ \begin{aligned}
+	\frac{P_dP_g}{m_k} &,(\forall i \in \{1,\ldots,m_k\}) \\
+	1-P_dP_g  &, i = 0
+	\end{aligned} \right.
+	\end{equation} 
+	\end{itemize}
+	
+	On obtient finalement, les expressions des probabilités d'association en remplaçant les expressions de  $P\{\mathbf{z}_k| \mathbf{Z}^{k-1,s},m_k \theta_i(k) \} $ et $P\{\theta_i(k)| \mathbf{Z}^{k-1,s},m_k  \}$ dans?:
+	
+	 \begin{equation}
+	 \begin{aligned}
+	 \beta_i(k) = \frac{e_i}{b+\sum_{j=1}^{m_k}e_j} & (\forall i \in \{1,\ldots,m_k\})\\
+	  \beta_0( k) = \frac{b}{b+\sum_{j=1}^{m_k}e_j}& 
+	\end{aligned}  
+	\end{equation} 
+	avec 
+	 \begin{equation}
+	 \begin{aligned}
+	e_i = e^{ -\frac{1}{2} \tilde{z}^{i'}_{k|k-1} {\mathbf{S}_k^i}^{-1} \tilde{z}^i_{k|k-1} }
+	\end{aligned}  
+	\end{equation} 
+	
+	et
+	 \begin{equation}
+	b= \left\{ \begin{aligned}
+	 (2\pi/\gamma)^{n_z/2}\frac{1}{C_{n_z}} \lambda V_k \frac{1-P_dP_g}{P_d} &,\texttt{version paramétrique} \\
+	 (2\pi/\gamma)^{n_z/2}\frac{1}{C_{n_z}} m_k \frac{1-P_dP_g}{P_d}  &, \texttt{version non paramétrique} 
+	\end{aligned} \right.
+	\end{equation}
+	
+	On rappelle que $P_d$ représente la probabilité de détection de la cible, $P_g$ la probabilité de fenêtrage et $\lambda$ la densité de fausse alarme.
+	
+	La forme équivalente suivante peut également être utilisée:
+	 \begin{equation}
+	 \begin{aligned}
+	 \beta_i(k) = \frac{\alpha_i}{b+\sum_{j=1}^{m_k}\alpha_j} & (\forall i \in \{1,\ldots,m_k\})\\
+	  \beta_0( k) = \frac{b}{b+\sum_{j=1}^{m_k}\alpha_j}& 
+	\end{aligned} 
+	\end{equation}
+	avec maintenant
+	 \begin{equation}
+	 \alpha_i = P_g^{-1}\mathcal{N}(\hat{\mathbf{z}}_{k|k-1}^i;0;\mathbf{S}_k^i)
+	\end{equation}
+	et
+	 \begin{equation}
+	b= \left\{ \begin{aligned}
+	  \lambda  \frac{1-P_dP_g}{P_d} &,\texttt{version paramétrique} \\
+	   m_k/V_k \frac{1-P_dP_g}{P_d}  &, \texttt{version non paramétrique} 
+	\end{aligned} \right.
+	\end{equation}
+	
+	
+									\subsubsection{extension au cas multi-cible : le JPDAF}
+									\label{Section::hypothesesCumulees}
+									
+									Le \ac{JPDAF} (Joint Probabilistic Data Association Filter)  présenté dans \cite{BarShalom1995} et \cite{BarShalom2009} est une extension du filtre PDAF au cas de la poursuite multi-cibles. C'est donc une approche bayésienne.
+									
+									\paragraph{Hypothéses}
+									
+\begin{enumerate}[label=\arabic*.]
+\item le nombre $N_c$ de cibles à pister est supposé connu pour chaque cible $c$, toute l'information disponible obtenue à partir de la séquence de mesures $Z^k$ est résumée par l'état estimé à l'instant courant $\hat{\mathbf{x}}_{k|k}^c$ (qui approxime la moyenne conditionnelle) et sa covariance $\mathbf{P}_{k|k}^c$ 
+\item à chaque instant $k$, l'état réel $\mathbf{x}^c_k$ d'une cible $c$ est supposé gaussien avec $\mathcal{N}(\mathbf{x}^c_k; \hat{\mathbf{x}}_{k|k}^c, \mathbf{P}_{k|k}^c)$
+\item chaque cible $c$ possède une dynamique propre observable au travers du senseur
+\item la probabilité de détection $Pd^c$ de chaque cible $c$ est supposée connue
+\item les $N_c$  cibles sont supposées perceptibles par le senseur
+\end{enumerate}
+									\paragraph{Principe}
+									
+						Considérons un groupe de $N_c$ regroupées dans un même cluster à l'instant $k$. L'ensemble de ces $m_k$  mesures à l'instant $k$ est noté: 
+	 \begin{equation}
+\mathbf{Z}(k)=\{\mathbf{z}^1_k, \ldots, \mathbf{z}^{m_k}_k\}	 
+	 \end{equation}
+ 				Si on suppose les cibles détectées à l'instant $k$, nous allons trouver dans les $m_k$ mesures les $N_c$  mesures associées à nos cibles mais également des mesures associées à des fausses alarmes. 
+ 				
+ 				Pour rappel, on note $(\forall i \in \{1,\ldots,m_k\})(\forall c \in \{1,\ldots,N_c\})$:
+ 		 \begin{equation}
+\tilde{\mathbf{z}}^{i,c}_k= \mathbf{z}^c_{k|k-1} - \mathbf{z}^i_{k}
+	 \end{equation}			
+ 				l'innovation entre la mesure prédite de la cible $c$ avec la mesure $i$ fournit par le capteur. 
+ 				L'innovation pondérée s'écrit alors : 
+ 		 		 \begin{equation}
+\tilde{\mathbf{z}}^{c}_k= \sum_{i=1}^{m_k}\beta_i^c(k) \tilde{\mathbf{z}}^{i,c}_k
+	 \end{equation}		
+ 	où $\beta_i^c(k)$ est la probabilité pour que la mesure $i$ corresponde à celle de la cible $c$. La probabilité $\beta_0^c(k)$ est la probabilité pour qu'aucune des mesures ne provienne de la cible $c$. Cette innovation pondérée interviendra alors dans
+la mise à jour $\hat{\mathbf{x}}_{k|k}^c$ de l'état de la cible $c$. Ceci sera fait de la même façon pour n'importe quelle cible.			
+				
+				L'algorithme \ac{JPDAF} évalue les $\beta_i^c(k)$ 
+ conjointement avec l'ensemble des $N_c$ cibles et des fausses
+alarmes présentes dans le cluster. La mise à jour de l'état d'une cible prendra alors en compte à la fois les fausses alarmes et les mesures des cibles proches interférantes.
+					
+					La clé du \ac{JPDAF} réside dans l'évaluation des probabilités conditionnelles de tous
+les événements d'association suivants:
+ 		 		 \begin{equation}
+ \Theta_k = \cap_{i=0}^{m_k}\theta_k^{i,c}
+	 \end{equation}		
+	 où $\theta_k^{i,c}$ est l'événement d'association que la cible $c$ soit issue de la mesure $i$ à l'instant $k$. L'indice $c = 0$ signifie par convention que la mesure $i$ est une fausse alarme. Les événements d'association faisables sont les événements conjoints
+pour lesquels une mesure est associée à une cible au plus.
+
+Les probabilités $\beta_i^c(k)$ pour que la mesure $i$ provienne de la source $c$ s'obtiennent en ajoutant la probabilité de tous les événements d'association conjoints faisables  $\Theta_k$ pour lesquels cette condition est vraie ; c'est à dire :
+ 		 		 \begin{equation}
+ 		 		 \label{eq:probaAssociationCible}
+ \begin{aligned}
+ \beta_k^{i,c} & = \sum_{\Theta_k}P\{\Theta_k|\mathbf{Z}(k)\}w_k^{i,c} (\forall i \in \{1,\ldots,m_k\})
+  \end{aligned}
+	 \end{equation}	
+  		 		 \begin{equation}
+  		 		  \label{eq:probaAssociationFa}
+ \begin{aligned}
+ \beta_k^{0,c} &= 1 - \sum_{i=1}^{m_k}  \beta_k^{i,c}
+ \end{aligned}
+	 \end{equation}		
+	 où $w_k^{i,c}$ représente la composante de la matrice d'association faisable courante caractérisant l'événement $\Theta_k$. 
+\paragraph{Matrice d'association faisable}
+On désigne par $\Omega=   [w^{i,c}]$ la matrice d'hypothèses construite à partir de la matrice de validation utile
+du ``cluster'' et augmentée d'une colonne unitaire en $c = 0$ correspondant à l'origine des FA. Cette matrice  est généralement appelée matrice de validation.
+ \begin{equation}
+ \Omega \triangleq   [w^{i,c}] (\forall i \in \{1,\ldots,m_k\})(\forall c \in \{1,\ldots,N_c\})
+	 \end{equation}	
+	 
+	 On rappelle que la colonne $c = 0$ caractérise le fait que l'origine des mesures peut être une fausse alarme. A partir de cette matrice d'hypothèses, on peut construire un ensemble  $\Theta_k$ exclusif et exhaustif
+d'hypothèses d'association conjointes mesures  $\longleftrightarrow$ origines possibles (faisables). Chaque événement
+(hypothèse d'association conjointe possible) est caractérisé par une matrice d'associations faisables:
+\begin{equation}
+ \hat{\Omega}(\Theta_k) =   [\hat{w}^{i,c}(\Theta_k)] (\forall i \in \{1,\ldots,m_k\})(\forall c \in \{1,\ldots,N_c\})
+\end{equation}	
+Chaque matrice $ \hat{\Omega}(\Theta_k) $ représente un événement faisable $\Theta_k$ si et seulement si les conditions suivantes
+sont satisfaites:
+\begin{enumerate}[label=\arabic*.]
+\item  n'importe quelle matrice $\hat{\Omega}(\Theta_k)$ doit rester compatible avec la matrice initiale d'hypothèses $ \Omega_k$
+  \begin{equation}
+ \hat{w}^{i,c}(\Theta_k)= \begin{cases}
+1& \mbox{, si } \theta_k^{i,c} \subset \Theta_k  \\
+0& \mbox{, sinon }
+\end{cases}
+	 \end{equation}	
+\item chaque mesure provient d'une seule source à la fois	 
+	   \begin{equation}
+\sum_{c=0}^{N_c} \hat{w}^{i,c}(\Theta_k) =1 (\forall i \in\{1,\ldots,m_k\})
+	 \end{equation}	
+	 \item une cible ne peut générer qu'une seule mesure au plus :
+		   \begin{equation}
+\sum_{i=0}^{m_k} \hat{w}^{i,c}(\Theta_k) \leq 1 (\forall c \in\{1,\ldots,N_c\})
+	 \end{equation}	 
+\end{enumerate}
+
+
+\paragraph{Indicateurs de détection, d'association et de \acf{FA}}
+Pour les besoins des calculs, on définit les indicateurs $\delta_c(\Theta_k)  (\forall c \in\{1,\ldots,N_c\})$, $\tau_i(\Theta_k) (\forall i \in\{1,\ldots,m_k\})$ et $\phi(\Theta_k)$ suivants :
+\begin{enumerate}[label=\arabic*.]
+\item  indicateur de détection d'une cible 
+		   \begin{equation}
+ \delta_c(\Theta_k) \triangleq  \sum_{i=1}^{m_k} \hat{w}^{i,c}(\Theta_k)  \leq  1  (\forall c \in\{1,\ldots,N_c\})
+	 \end{equation}	 
+	 \item Indicateur d'association des mesures $\tau_i(\Theta_k)$
+	 		   \begin{equation}
+ \tau_i(\Theta_k) = \sum_{c=1}^{N_k} \hat{w}^{i,c}(\Theta_k)
+	 \end{equation}	
+	 \item Indicateur du nombre de \acf{FA} $ \phi(\Theta_k)$
+ \begin{equation}
+	 \phi(\Theta_k) \triangleq  \sum_{i=1}^{m_k} [ 1 -  \tau_i(\Theta_k)]
+	  \end{equation}	
+\end{enumerate}
+Un exemple de construction de la matrice d'association faisable est donné dans la partie suivante. 
+\paragraph{Exemple}
+Considérons un cas très simple (figure \ref{fig:matriceAssociation}) où seulement deux cibles$N_c=2$, 3 mesures sont fournies par un capteur 2D $m_k=3$ dans une configuration comme présentée dans la figure \ref{fig:matriceAssociation}. La matrice initiale de validation dans ce cas est définie de la façon la suivante:
+\begin{figure}
+\includegraphics[scale=0.5]{Matrice_Association.png}
+\caption{Fenêtre de validation et clustering des mesures au temps courant}
+\label{fig:matriceAssociation} 
+\end{figure}
+
+
+ \begin{equation}
+ 	  \Omega =
+ \begin{pmatrix}
+ 1 &1 &0\\
+ 1 &1 &1
+ \end{pmatrix}
+	  \end{equation}
+
+Dans cet exemple les matrices d'association faisables se déclinent de la façon suivante:
+\begin{enumerate}[label=\arabic*.]
+\item cas où toutes les mesures sont des fausses alarmes 
+ \begin{equation}
+ 	  \hat{\Omega}_1 =
+ \begin{pmatrix}
+ 1 &0 &0\\
+ 1 &0 &0
+ \end{pmatrix}
+	  \end{equation}	
+	  \item cas où la mesure 1 est issue de la cible 1 et la mesure 2 une fausse alarme
+ \begin{equation}
+ 	  \hat{\Omega}_2 =
+ \begin{pmatrix}
+ 0 & 1 &0\\
+ 1 &0 &0
+ \end{pmatrix}
+	  \end{equation}  
+	  	  \item cas où la mesure 1 est issue de la cible 1 et la mesure 2 issue de la cible 2
+ \begin{equation}
+ 	  \hat{\Omega}_3 =
+ \begin{pmatrix}
+ 0 & 1 &0\\
+ 0 &1 &0
+ \end{pmatrix}
+	  \end{equation}  
+	  	  	  \item cas où la mesure 1 est une fausse alarme et la mesure 2 issue de la cible 2
+ \begin{equation}
+ 	  \hat{\Omega}_4 =
+ \begin{pmatrix}
+ 1 &0 &0\\
+ 0 &1 &0
+ \end{pmatrix}
+ 	  \end{equation}  
+ 	  	  	  \item cas où la mesure 2 est une fausse alarme et la mesure 1 issue de la cible 1
+ \begin{equation}
+ 	  \hat{\Omega}_5 =
+ \begin{pmatrix}
+ 0 &0 &1\\
+ 1 &0 &0
+ \end{pmatrix}
+	  \end{equation}  
+	\end{enumerate} 
+	
+	\subsubsection{expression des probabilités d'associations conjointes} 
+	Pour mettre en \oe uvre le \ac{JPDAF}, il nous faut d'abord évaluer les probabilités d'associations conjointes $P\{\Theta(k) | Z^k\}$, puis pour chaque cible $c$, les probabilités marginales d'associations $\beta^{i,c}_k$ en utilisant les relations \ref{eq:probaAssociationCible} et \ref{eq:probaAssociationFa}.
+	
+	En utilisant la règle de Bayes, on écrit
+	 \begin{equation}
+	 \label{eq:JPDAFProbaAssociation}
+P\{\Theta(k) | Z^k\} = \frac{1}{n}p\{\mathbf{Z}(k)|\Theta(k),m_k,Z^{k-1}\}P\{\Theta(k) |m_k Z^{k-1}\}
+ 	  \end{equation}  
+	où $n$ est ici la constante de normalisation.
+	
+	
+	Pour simplifier le développement des calculs, on suppose
+	\begin{enumerate}[label=\arabic*.]
+\item que l'on a un seul volume de surveillance $V$ englobant toutes les fenêtres de validation du cluster é
+analyser,
+\item que les états des cibles sont mutuellement indépendants sachant l'ensemble des mesures
+disponibles,
+\item que les mesures ne provenant pas des cibles sont uniformément réparties dans le volume de surveillance.
+$V$ du senseur.
+	\end{enumerate}
+	\paragraph{Fonction de vraisemblance des mesures}
+	La (fonction de) vraisemblance des mesures conditionnellement à $\Theta(k)$ s'écrit:
+	 \begin{equation}
+ p\{\mathbf{Z}(k)|\Theta(k),m_k,Z^{k-1}\}= \prod_{i=1}^{m_k}  p\{\mathbf{z}_k^i|\theta_k^{i,c}),m_k,Z^{k-1}\}
+ 	  \end{equation}  
+La variable $m_k$ étant le nombre total de mesures validées présentes dans le cluster de cible considéré. La densité de probabilité d'une mesure $\mathbf{z}_k^i$ sachant son origine s'écrit :
+	 \begin{equation}
+p\{\mathbf{z}_k^i|\theta_k^{i,c},m_k,Z^{k-1}\} = 
+\begin{cases}
+V^{-1} & \mbox{si } \tau_i(\Theta_k) =0\\
+e_k^{c,i} = \mathcal{N}(\mathbf{z}^i_k;\hat{\mathbf{z}}^{i,c}_{k|k-1};\mathbf{S}^{i,c}_k) & \mbox{si } \tau_i(\Theta_k) =1
+\end{cases}
+ 	  \end{equation}  
+ où $\hat{\mathbf{z}}^{i,c}_{k|k-1}$ est la mesure prédite de la cible $c$ avec pour covariance sur l'innovation $\mathbf{S}^{i,c}_k$ avec la mesure  $\mathbf{z}_k^i$. La vraisemblance s'obtient finalement de la façon suivante :
+ 	 \begin{equation}
+ 	 \label{eq:JPDAFVraisemblance}
+ p\{\mathbf{Z}(k)|\Theta(k),m_k,Z^{k-1}\}= V^{- \phi(\Theta_k) }  \prod_{i=1}^{m_k}   {[e_k^{c,i}]}^ {\tau_i(\Theta_k)}
+ 	  \end{equation}  
+ On rappelle que $\phi(\Theta_k)$ indique le nombre de mesures considérées comme \acf{FA}dans l'événement $\Theta_k$.
+ 
+ 	\paragraph{Probabilité \textit{a priori} d'un événement $\Theta_k$}
+ 	
+ 	La probabilité \textit{a priori} d'un événement$\Theta_k$ peut s'écrire : 
+ 	 	 \begin{equation}
+P\{\Theta(k) |m_k, Z^{k-1} \}= P\{\Theta(k) | m_k\} = P\{\Theta(k), \delta_c(\Theta_k) , \phi(\Theta_k)  | m_k\}
+ 	  \end{equation} 
+ 	Ce qui peut encore être décomposé avec la règle de Bayes sous la forme  :
+ 	
+ 	 	 	 \begin{equation}
+ P\{\Theta(k), \delta_c(\Theta_k) , \phi(\Theta_k)  | m_k\} =  P\{\Theta(k) | m_k , \delta_c(\Theta_k) , \phi(\Theta_k)  \} P\{ \delta_c(\Theta_k) , \phi(\Theta_k)  | m_k\}
+ 	  \end{equation} 
+ 	
+ 	La première probabilité $P\{\Theta(k) | m_k , \delta_c(\Theta_k) , \phi(\Theta_k)  \} $ est égale à l'inverse du nombre de permutations de $m_k -  \phi(\Theta_k)$ mesures (associées aux cibles dans $\Theta_k$ ) parme les $m_k$ mesures disponibles. On suppose ici que toutes ces permutations sont équiprobables. Ainsi, on a
+    	 	 	 \begin{equation}
+  P\{\Theta(k) | m_k , \delta_c(\Theta_k) , \phi(\Theta_k)  \} = \frac{1}{P^{m_k}_{m_k- \phi(\Theta_k) } } = \frac{ \phi(\Theta_k)! }{m_k!}
+ 	  \end{equation} 
+ 	  La probabilité $P\{ \delta_c(\Theta_k) , \phi(\Theta_k)  | m_k\}$ est obtenue en supposant $\delta$ et $\phi$ indépendants. Il vient :
+ 	  
+ 	     	 	 	 \begin{equation}
+ P\{ \delta_c(\Theta_k) , \phi(\Theta_k)  | m_k\} = \mu_F(\phi(\Theta_k)) \prod _{c=1}^{N_c} (P_d^c)^{\delta_c(\Theta_k)}(1-P_d^c)^{1 - \delta_c(\Theta_k)}
+ 	  \end{equation}  
+ 	  
+ 	  Nous obtenons finalement la probabilité a priori :
+ 	   	     	 	 	 \begin{equation}
+ \label{eq:JPDAFProbaApriori}
+ P\{\Theta(k) |m_k, Z^{k-1} \}= \frac{ \phi(\Theta_k)! }{m_k!}\mu_F(\phi(\Theta_k)) \prod _{c=1}^{N_c} (P_d^c)^{\delta_c(\Theta_k)}(1-P_d^c)^{1 - \delta_c(\Theta_k)}
+ 	  \end{equation}  
+ 	  
+ 	  
+ 	  \paragraph{Expression de la probabilité d'association conjointe courante} 
+ 	  
+ 	  En remplaçant dans \ref{eq:JPDAFProbaAssociation} les expressions avec celles obtenues dans \ref{eq:JPDAFVraisemblance} et \ref{eq:JPDAFProbaApriori}, nous obtenons 
+ 	  	 \begin{equation}
+ 	   \label{eq:JPDAFProbaApriori}
+ P\{\Theta(k) | Z^{k} \}= \frac{1}{n}\frac{ \phi(\Theta_k)! }{m_k!}\mu_F(\phi(\Theta_k)) V^{- \phi(\Theta_k) }  \prod_{i=1}^{m_k}   {[e_k^{c,i}]}^ {\tau_i(\Theta_k)} \prod _{c=1}^{N_c} (P_d^c)^{\delta_c(\Theta_k)}(1-P_d^c)^{1 - \delta_c(\Theta_k)}
+ 	  \end{equation}  
+ 	  où $n$ est la constante de normalisation. 
+ 	  
+ 	  Comme pour le \ac{PDAF}, il existe deux versions du \ac{JPDAF} suivant le modèle choisi pour la densité de fausses alarmes $\mu_F(\phi(\Theta_k))$. 
+ 	  
+ 	  \subsubsection{version paramétrique du \ac{JPDAF}}
+ 	  Dans ce cas, on suppose que le nombre $\phi$ de fausses alarmes suit une loi de Poisson de paramètre $\lambda$. la densité $\lambda$ représente la densité spatiale du clutter dans l'espace d'observation. Ainsi, on suppose donc :
+ 	  	 \begin{equation}
+\mu_F(\phi(\Theta_k)) = \frac{{(\lambda V )}^{\phi}}{\phi!} e^{-\lambda V}
+ 	  \end{equation}  
+
+Sous cette hypothèse, la probabilité d'association conjointe a posteriori des événements s'exprime alors par :
+ 	  	 \begin{equation}
+ P\{\Theta(k) | Z^{k} \}= \frac{1}{n} \prod_{i=1}^{m_k}   {[\lambda^{-1} e_k^{c,i}]}^ {\tau_i(\Theta_k)} \prod _{c=1}^{N_c} (P_d^c)^{\delta_c(\Theta_k)}(1-P_d^c)^{1 - \delta_c(\Theta_k)}
+ 	  \end{equation}  
+ 	  oé $n$ est la constante de normalisation. 
+ 	  
+ 	   	  \subsubsection{version non paramétrique du \ac{JPDAF}}
+ 	   	  
+ 	   	  Dans ce cas, on suppose n'avoir aucune information sur la masse de probabilités de $\phi$ et l'on adopte
+l'hypothèse de loi diffuse pour $\mu_F(\phi(\Theta_k))$ à savoir,
+
+	 \begin{equation}
+\mu_F(\phi(\Theta_k)) = \epsilon
+ 	  \end{equation}  
+ 	  
+ 	  
+Sous cette hypothèse, la probabilité d'association conjointe \textit{a posteriori} des événements s'exprime alors par :
+ 	  	 \begin{equation}
+ P\{\Theta(k) | Z^{k} \}= \frac{\phi(\Theta(k))!}{n} \prod_{i=1}^{m_k}   {[V e_k^{c,i}]}^ {\tau_i(\Theta_k)} \prod _{c=1}^{N_c} (P_d^c)^{\delta_c(\Theta_k)}(1-P_d^c)^{1 - \delta_c(\Theta_k)}
+ 	  \end{equation}  
+ où $n$ est la constante de normalisation. 
+ 	  
+  \subsubsection{équations de mise à jour et de prédiction}
+  Une fois l'énumération exhaustive des événements conjoints d'associations faisables effectuée, on évalue
+les probabilités $ P\{\Theta(k) | Z^{k} \}$. Puis pour chaque cible c, les probabilités marginales d'associations $\beta_k^{i,c}$ sont calculées en utilisant les relations sont calculées en utilisant les relations \ref{eq:probaAssociationCible} et \ref{eq:probaAssociationFa}.
+  
+  La mise à jour de chaque cible est réalisée simplement par les équations de mise à jour du filtre \ac{PDAF} standard. Les prédictions sont obtenues classiquement en fonction du modèle stochastique choisi. 
+  \subsubsection{bilan du \ac{JPDAF}}
+  Les hypothèses du \ac{JPDAF} sont les suivantes: 
+  
+  \begin{enumerate}[label = \arabic*.]
+  \item il y a plusieurs cibles à pister dans du ``cluster'',
+  \item le nombre $N_c$ de cible à pister est connu,
+  \item le pistes sont déjà initialisées,
+  \item la probabilité de détection des cibles est connu,
+  \item les cibles sont supposées perceptibles par le capteur,
+  \item le modèle dynamique des cible peut être différent,
+  \item il existe des mesures communes entre les différentes cibles, 
+\item chaque cible génère au plus une seule mesure (cas des cibles étendues non étudié) 
+\item Chaque mesure provient d'une seule source au moins
+\item la densité de probabilité de l'état de chaque cible est supposée gaussienne et la variable aléatoire associée est indépendante des autres cibles.   Toute l'information passée se résume dans l'état prédit et la covariance prédite. 
+  \end{enumerate}
+  
+  \textbf{Le principe du \ac{JPDAF} est le suivant :}
+    \begin{enumerate}[label = \arabic*.]
+  \item  Prédire l'état et la mesure de chaque cible
+  \item  Valider les mesures reçues dans chaque fenêtre de validation
+  \item  Isoler et regrouper les cibles en clusters
+  \item  Pour chaque cible appartenant à un cluster de taille $>$ 2:
+    \begin{itemize}[label =  $\square$ ]
+  \item Générer la liste des matrices d'associations conjointes faisables
+  \item  Calculer la probabilité des événements d'associations conjointes
+  \item  évaluer les probabilités marginales d'associations $\beta_k^{i,c}$
+  \item  Mettre à jour l'état de la cible avec les équations du PDAF
+  \item  Prédire l'état de la cible avec les équations du modèle
+  \end{itemize}
+ \end{enumerate}
+
+\textbf{Les avantages du \acf{JPDAF} :}
+\begin{enumerate}[label = \arabic*.]
+ \item Relative simplicité de mise en \oe vre,
+ \item  N'exige pas de stockage en mémoire (0-scan back),
+ \item Donne de bons résultats lorsque la densité du clutter n'est pas trop importante.
+ \end{enumerate}
+ 
+ 
+\textbf{Les limitations du \ac{JPDAF} :}
+\begin{enumerate}[label = \arabic*.]
+ \item Le nombre $N_c$ de cibles pistées doit être connu
+ \item Les pistes doivent être initialisées
+ \item Les cibles doivent être perceptibles
+ \item Le nombre de matrices d'association croît exponentiellement avec la dimension du problème
+  \end{enumerate}
+  
+  %=====================================
+  % Le MHT
+  %=====================================
+  
+   \subsection{l'algorithme multi-hypothése}
+		L'approche à hypothéses multiples de pistages \acf{MHT} proposée par Donald B Reid en 1979 dans \cite{Reid1979} et plus récemment dans \cite{Kim2015} est dans son principe une extension de l'approche FBO (Filtre Bayesien Optimal) au cas multi-cible. Dans le \ac{MHT} les mesures peuvent être associées à des pistes existantes ou de nouvelles pistes. La probabilité \textit{a posteriori} pour que chaque mesure disponible à l'instant k provenant soit d'une fausse alarme, soit d'une cible existante, soit d'une nouvelle cible est évaluée. L'une des particularités du \ac{MHT} est que le nombre de cibles n'est pas connu a priori contrairement au \ac{JPDAF}. Le principe du \ac{MHT} est donc de générer un ensemble d'hypothèses (Arbre d'hypothèses) sur l'origine de chaque mesure disponible. La probabilité \textit{a posteriori} de chaque hypothèse est calculée récursivement en tenant compte des détections manquantes, des fausses alarmes et de l'apparition de nouvelles cibles
+La problématique d'association de pistes est présentée via l'exemple décrit dans la figure \ref{fig:SectionFenetrageMHT}. Deux cibles interférantes au scan $k$ sont considérées. Il est alors d'usage de parler de regroupement de cibles ou ``clustering''. Chacune d'elles est représentée par une piste $\mathcal{T}^1$ respectivement $\mathcal{T}^2$. Au temps courant $k$, le système prédit deux mesures notées $\hat{\mathbf{z}}_{k|k-1}^1$ et   $\hat{\mathbf{z}}_{k|k-1}^2$  issues respectivement des états prédits   $\hat{\mathbf{x}}_{k|k-1}^1$   et  $\hat{\mathbf{x}}_{k|k-1}^2$. A partir de fenêtrages statistiques présentés dans la partie \ref{SectionFenetrageMHT}, trois mesures sont validées. La configuration spatiale est la suivante :
+\begin{enumerate}
+\item la mesure est une fausse alarme indexée par 0,
+\item la mesure provient d'une des cibles qui l'a validée lors du processus de fenêtrage statistique, 
+\item la mesure est une nouvelle piste inexistante jusqu'alors. 
+\end{enumerate}
+ 
+\begin{center}
+ \begin{figure}[h!]
+ \includegraphics[scale=0.5]{MHT_Association_0.png}
+ \caption{fenêtrage statistique et génération des hypothèses d'association.}
+  \label{fig:SectionFenetrageMHT}
+ \end{figure}
+\end{center}
+ 
+ Les hypothèses sur l'origine des mesures sont représentées par une  structure arborescente qui devient exponentielle en fonction du nombre de pistes présentes dans le cluster et le nombre de mesures validées. 
+ 
+ Dans chaque ``cluster'', le \ac{MHT} va évaluer chaque scénario d'association. Cette étape commence par construire toutes les hypothéses d'association comme illustrée dans la figure \ref{fig:SectionHypotheses}.  chaque ligne correspondant à une hypothèse représente l'origine de la mesure (i.e. le numéro de piste à laquelle elle peut être attachée) : soit une piste existante, une fausse alarme (indexée par 0) ou une nouvelle piste.  
+ 
+
+  \begin{figure}[h!]
+  \begin{center}
+ \includegraphics[scale=0.5]{MHT_Association.png}
+\caption{Génération des scénarii d'association.}
+ \label{fig:SectionHypotheses}
+ \end{center}
+ \end{figure}
+
+ 
+ Il reste maintenant à évaluer chaque scénario d'association.
+ 
+\subsubsection{approche orientée piste}
+					Généralement, dans le \ac{MHT} usuel, les hypothèses d'association conjointes cumulées sont gérées en supprimant les hypothèses les plus invraisemblables et en combinant celles qui sont similaires. La métrique utilisée pour classer les hypothèses est simplement la probabilité associée aux \textit{scenarii} d'association. C'est ici que l'algorithme à inférence Bayésienne perd son optimalité par suppression des branches les moins probables. Ce sacrifice permet de limiter l'explosion de la combinatoire. Les nouvelles hypothèses sont générées à partir des hypothèses survivantes. A partir de la probabilité \textit{a priori} sur chaque nouvelle hypothèse, et en éliminant et combinant les hypothèses fils, l'algorithme doit énumérer et évaluer un nombre très important d'hypothèses avec un \ac{MHT} standard. En dépit de la suppression des hypothèses les moins probables, le problème reste critique dans un environnement multi-cible et riche en fausses alarmes. 
+L'alternative proposée par Blackman dans \cite{Blackman1986} consiste à réexaminer la manière dont les hypothéses sont formées et de reconsidérer la métrique de classement des \textit{scenarii} d'association. Dans les approches proposées par Kurien dans \cite{Kurien1990} et Demos dans \cite{Demos1990}, l'objectif est de réorganiser le \ac{MHT} en partant cette fois-ci de la définition de la vraisemblance d'une piste et en propageant cette dernière aux différents \textit{scenarii} d'association. L'idée est d'évaluer la continuité de chaque piste à chaque instant d'échantillonnage. Kurien propose une approche heuristique afin de classer la continuité des pistes en fonction de leur durée de vie, en termes de nombre de ``scans''. Une piste est dite ``native'' si sa longueur est égale à un, ``tentative'' si sa longueur est supérieure ou égal à deux, ``intermédiaire'' si sa longueur est supérieure ou égale à trois et ``confirmée'' si la longueur de la piste est supérieure ou égale à quatre. En fonction du niveau de classification une probabilité \textit{a priori} est attribuée à chaque piste. En utilisant une approche Bayésienne, la probabilité de chaque piste est évaluée en fonction de la vraisemblance. Il devient possible de séparer les différents \textit{scenarii} d'association et d'évaluer la probabilité de ces derniers qui est calculée à partir de la probabilité de chaque piste. L'approche proposée par Demos quant à elle, classifie les pistes à partir de leur fonction "score ". Partant des hypothèses H1, ``la mesure associée à la piste est originaire de la cible pistée'', et H0, ``la mesure est soit une fausse alarme soit une nouvelle cible'', les auteurs définissent la fonction ``score'' qui représente le ratio entre la vraisemblance a posteriori de H1 et la vraisemblance a posteriori de H0. Cette fonction permet d'évaluer la pertinence du scénario d'association et de déclarer la satisfaction de l'une des deux hypothèses lorsque le test séquentiel de Wald est satisfait. Le test est présenté dans \cite{Blackman1986} et plus loin dans ce chapitre. L'utilisation de ce test permet de différer la décision. Cette approche est appelée branche structurée (Structure Branching : SB) et son implémentation dans le \ac{MHT} est présentée dans cette partie. La métrique utilisée dans l'approche SB est la fonction score cumulée. Le score cumulé d'une piste permet de calculer la probabilité globale de chaque piste permettant de supprimer les pistes les moins probables. En supprimant certaines pistes avant la génération des hypothèses d'association, un grand nombre d'hypothèses invraisemblables ne sont jamais générées. C'est ce test qui sera utilisé tout au long du manuscrit. 
+			 
+			 \subsubsection{définition du score d'une piste}
+			 Dans cette partie, la démonstration du SB-MHT présentée dans \cite{Demos1990} est reprise. La validité d'une piste $\mathcal{T}^{k,l}$ \textit{a posteriori} d'une mesure  $\mathbf{z}_k^i (\forall i \in \{1,\ldots,m_k\})$ est évaluée à partir de la probabilité associée à son événement $\theta^{i,l}_k$ que le mesure  $\mathbf{z}_k^i$  soit la continuation de la piste $l$ parmi les $N_c$ pistes existantes à l'instant $k$. En utilisant la règle de Bayes, il vient $(\forall i \in \{1,\ldots,m_k\})$:
+			 
+			  	  	 \begin{equation}
+			  	  	 \label{eq:score_pos}
+ p\{\theta^{i,l}_k| Z^{k} \}= \frac{p\{\mathbf{z}_k^i| Z^{k-1},\theta^{i,l}_k \}P\{\theta^{i,l}_k\}}{p \{\mathbf{z}_k^i|Z^{k-1} \}}
+ 	  \end{equation}  
+ où  $p\{\mathbf{z}_k^i| Z^{k-1},\theta^{i,l}_k \}$ est la vraisemblance associée à la mesure $\mathbf{z}_k^i$  sachant que la cible $l$ est présente. Le terme $p\{\mathbf{z}_k^i|Z^{k-1} \}$  est le facteur de normalisation. La probabilité d'initialisation $P\{\theta^{i,l}_0\}$ d'une piste est définie par la probabilité   associée à l'apparition d'une nouvelle cible $\beta_{nt}$ normalisée par la somme des probabilités d'apparition d'un plot (originaire d'une fausse alarme $\beta_{fa}$ ou de la cible $\beta_{nt}$ ). Ainsi il vient:
+ \begin{equation}
+  p\{\theta^{i,l}_0\}= \frac{\beta_{nt}}{\beta_{nt} + \beta_{fa}}
+ 	  \end{equation}
+ 
+Dans l'approche SB, la validité d'une piste est basée sur l'évaluation de la vraisemblance de chaque piste construite sur le ratio entre la probabilité que la mesure  $\mathbf{z}_k^i$ soit issue de la vraie piste et la probabilité que la mesure soit une nouvelle cible ou une fausse alarme.  Sous les hypothèses $H_1$ (la mesure est originaire de la cible pistée) et $H_0$ (la mesure est originaire d'une fausse alarme), l'équation \ref{eq:score_pos} devient $(\forall l \in \{1,\ldots,N_c\})$:
+
+ \begin{equation}
+  p\{\theta^{i,l}_k|Z^{k}\}= \frac{p\{\mathbf{z}_k^i| Z^{k-1},\theta^{i,l}_k \}P\{\theta^{i,l}_k,H_1\}}{p \{\mathbf{z}_k^i,H_1 |Z^{k-1} \} + p\{\mathbf{z}_k^i,H_0 |Z^{k-1} \}}
+ 	  \end{equation}
+ 	  En multipliant les termes par $ 1/  p\{\mathbf{z}_k^i |Z^{k-1},H_0 \}$ il vient $(\forall l \in \{1,\ldots,N_c\})$:   
+ 	   \begin{equation}
+  p\{\theta^{i,l}_k|Z^{k}\}= \frac{  LR_k^{i,l} P\{\theta^{i,l}_k,H_1\}}{LR_k^{i,l} P\{\theta^{i,l}_k,H_1\} +  P\{H_0 |Z^{k-1} \}(1-Pd)}
+ 	  \end{equation}
+ 	  où $LR_k^{i,l}$ est le ratio des vraisemblances associées à la mesure $\mathbf{z}_k^i$ reçue au scan $k$. Ce ratio est définit par :
+  	   \begin{equation}
+ LR_k^{i,l}= \frac{ p\{\mathbf{z}_k^i| Z^{k-1},\theta^{i,l}_k , H_1\} }{ p\{\mathbf{z}_k^i| Z^{k-1},\theta^{i,l}_k ,H_0\}}
+ 	  \end{equation}	  
+ 	  soit, 
+ 	 	   \begin{equation}  
+ 	   LR_k^{i,l}=
+ 	   	   \begin{cases}
+  \frac{ P_d e^{-\lambda_k^{i,l}}}{(\beta_{fa}+\beta_{nt})\sqrt{|2\pi\mathbf{S}_k^{i,l}|}} & \text{si $H_1$} \\ 
+  \frac{1-P_d}{\beta_{fa}+\beta_{nt}} & \text{si $H_0$}
+ 	  \end{cases} 
+ 	    \end{equation}
+ 	    
+			 \subsubsection{ratio logarithmique des vraisemblances cumulées}
+			 Le ratio logarithmique des vraisemblances cumulées permet d'obtenir de manière récursive la ``qualité'' ou ``score'' d'une piste $\mathcal{T}^{k,l}$ depuis la genèse de cette dernière. Une forme récursive de l'équation est obtenue en considérant cette fois-ci l'ensemble des observations reçues jusqu'à l'instant $k$. 
+D'après \cite{Blackman1999}, le ratio logarithmique des vraisemblances cumulées d'une piste  $\mathcal{T}^{k,l}$ à l'instant $k$ est défini par $(\forall l \in \{1,\ldots,N_c\})$: 
+
+  \begin{equation}  
+ 	   LLR_k^{i,l}= ln(LR_k^{i,l})
+ 	\end{equation}
+	
+Le score quant à lui représente la somme des ratios logarithmique calculé  pour chaque \textit{scenarii} d'association depuis la genèse de la piste   
+$(\forall l \in \{1,\ldots,N_c\}),(\forall i \in \{1,\ldots,m_k\}),(\exists j \in \{1,\ldots,m_{k-1}\})$:
+  \begin{equation}  
+ 	   \Lambda_k^{l}=  LLR_k^{i,l} + \Lambda_{k-1}^{j,l}
+ 	\end{equation}
+ 	avec 
+ 	  \begin{equation}  
+ 	   \Lambda_0^{l}=ln(\frac{\beta_{nt}}{\beta_{fa}} ) 
+ 	\end{equation}	 
+			 
+			 Dans \cite{Blackman1999}, l'auteur modifie le ratio des vraisemblances cumulées  en fonction du type de capteur utilisé. En effet si le capteur fournit des informations de type amplitude du signal ou même identité de la cible, il est possible d'introduire ces informations à ce niveau.  
+			 
+			 \subsubsection{définition d'une hypothèse d'association et évaluation}
+			 
+			 Une hypothèse d'association est un ensemble cohérent d'association de pistes avec des mesures. Parmi les pistes existantes, les différents \textit{scenarii} d'associations, ou hypothèses d'associations, sont générés et évalués comme présenté au paragraphe \ref{Section::hypothesesCumulees}. Le score   d'une hypothèse d'association $H_n$ au temps $k $est alors défini comme étant la somme de toutes les fonctions scores   des pistes appartenant à l'hypothèse $H_n$. Il vient $(\forall l \in \{1,\ldots,N_c\})$: 
+			 
+\begin{equation}  
+ 	   \Lambda_{H_n}=\sum_{\mathcal{T}^{k,l}\in H_n}  \Lambda_k^{l} 
+\end{equation}
+
+La probabilité de réalisation d'un scénario d'association n est donnée par l'expression suivante :
+\begin{equation}  
+ 	   P\{H_n|Z^k\}= \frac{exp(\Lambda_{H_n})}{1+\sum_{n = 1}^{N_h}  \Lambda_{H_n}} 
+\end{equation}
+et si toutes les mesures validées dans le ``cluster'' sont des fausses alarmes, il vient :
+
+\begin{equation}  
+ 	   P\{H_0|Z^k\}= \frac{1}{1+\sum_{n = 1}^{N_h}  \Lambda_{H_n}} 
+\end{equation}
+
+La probabilité globale de réalisation d'un événement est quant à elle obtenue de la manière suivante:
+
+\begin{equation}  
+ 	   P_G\{\theta_k^{i,l}|Z^k\}=  \sum_{n=1}^{N_h} P\{\theta_k^{i,l}|Z^k,H_n\}P\{H_n|Z^k\}
+\end{equation}
+oé le terme $P\{\theta_k^{i,l}|Z^k,H_n\} = 1 $ si  $\mathcal{T}^{k,l} \in H_n$ et 0 sinon.
+
+Nous pouvons désormais calculer les probabilités de réalisation des scénarios construits dans  \ref{Section::hypothesesCumulees} ainsi que la probabilité de réalisation d'un événement d'association. Lors de cette étape les scénario les moins probables sont supprimés ainsi que les pistes ayant une probabilité globale d'association faible. 
+ 
+			 \subsubsection{le ``NScan prunning''}
+			 
+			 A chaque période d'échantillonnage (ou ``scan'') du capteur, le \acf{TOMHT} va générer et propager tous les scénarii d'association faisable entrainant ainsi une explosion de la combinatoire dés lors où le nombre de mesures ou de pistes présentes dans le ``cluster'' devient important. Pour limiter l'explosion de la combinatoire, nous avons proposé précédemment une méthode d'évaluation de chaque hypothèse et de réduction du nombre d'association  en éliminant les pistes les moins probables. Parole d'expert et nous l'illustrerons en cour, ces première techniques ne sont pas suffisantes. C'est pourquoi une méthode appelée ``N-scan prunning'' permet de réduire considérablement le nombre d'hypothèses en ``élaguant'' les branches les moins probables d'une piste (ou arbre). Le principe consiste à attendre ``N-scan''  calculer les scores de chaque branche pour ne sélectionner que la branche la plus probable. Les autres branches sont éliminées. 
+			 
+			 L'exemple illustré dans la figure \ref{fig:arbre} décrit le principe de cette technique. Cette euristique est la plus couramment utilisée. Il existe des variantes permettant de retenir plusieurs branches dont les scores sont sensiblement proches du score maximum. 
+\begin{center}
+\begin{figure}
+\includegraphics[scale=0.6]{NScanPrunning.png} 
+\caption{Construction de l'arbre d'hypothèses en fonction des scénarii d'association.}
+\label{fig:arbre}
+\end{figure}		 
+\end{center}
+\subsubsection{le ``merging'' de pistes}
+	La phase de ``merging'' ou ``combining'' à fait l'objet de plusieurs études ou thèses puisque l'enjeu opérationnel est assez important. En effet, quelle(s) technique(s) utilisée(s) lorsque le système piste deux cibles proches ? Faut-il conserver chaque piste pour assurer une bonne estimation de chaque état et augmenter considérablement la combinatoire ou faut-il fusionner les pistes pour afin d'obtenir une interprétation globale de la situation? 
+
+Une méthode classique décrite dans \cite{Blackman1986}, consiste à définir un critère d'appariement entre deux pistes afin de déterminer si les effets sont similaires. Deux pistes sont similaires si au bout de ``K-scans'' si elles utilisent les mêmes mesures ou si la distance statistique des états estimés est faible. Le première critère est purement empirique et marche bien dés lors les interactions entre les cible et le nombre de fausses alarmes sont faibles. Par ailleurs, il permet de conserver pleinement toute la statistique sur l'estimation de l'état. Pour des cas plus complexes (ce qui est souvent le cas), des critères d'appariement entre les pistes sont utilisés; deux pistes parmi $Nc$ pistes sont dites proches statistiquement si sur chaque composante  de l'état, les règles suivantes sont satisfaits :
+ 
+$\#$1 critère distance:
+\begin{equation}  
+ 	  |\hat{\mathbf{x}}_{k|k}^l - \hat{\mathbf{x}}_{k|k}^p|_c< \beta ( \sqrt{\mathbf{P}_{k|k}^l + \mathbf{P}_{k|k}^p})_c, (\forall (l,p) \in \{1,\ldots,N_c\}^2)
+\end{equation}
+
+ $\#$2 critère précision:
+\begin{equation}  
+ |\mathbf{P}_{k|k}^l - \mathbf{P}_{k|k}^p|_c  < \gamma, (\forall (l,p) \in \{1,\ldots,N_c\}^2, p \neq l)
+\end{equation}
+oé $c$ représente la composante du vecteur ou de la matrice, $\beta$ et $\gamma$ sont données dans \cite{Blackman86} telles que $\beta = 0.1 $ et $\gamma = 0.2$. 
+
+Nous aurions pu choisir un critère statistique basé sur l'état. Cependant, Blackman bien habitué dés cas concrets a bien compris qu'il était plus efficace de regarder le résultat de l'appariement sur chacune des composantes du vecteur d'état prises séparément.  
+ 
+Lorsque le critère d'appariement entre deux pistes $\mathcal{T}^{k,l}$ et   $\mathcal{T}^{k,p}$  sont satisfaits , les deux états estimés et matrices de covariance associées sont combinés en un état unique dont la moyenne statistique est donnée par $(\forall (l,p) \in \{1,\ldots,N_c\}^2 , p \neq l)$:
+
+\begin{equation}  
+ 	   \hat{\mathbf{x}}_{k|k}   = \frac{P\{\theta_k^l | Z^k\}  \hat{\mathbf{x}}_{k|k}^l P\{\theta_k^p | Z^k\}  \hat{\mathbf{x}}_{k|k}^p}{P\{\theta_k^p | Z^k\} + P\{\theta_k^l | Z^k\}}
+\end{equation}
+			 
+La matrice de covariance associée est donnée par $(\forall (l,p) \in \{1,\ldots,N_c\}^2 , p \neq l)$:
+\begin{equation}  
+ \begin{split}  
+ 	    \mathbf{P}_{k|k}  &=   \frac{1}{P\{\theta_k^p | Z^k\} + P\{\theta_k^l | Z^k\}} ( P\{\theta_k^l | Z^k\}   \mathbf{P}_{k|k}^l +P\{\theta_k^p | Z^k\}  \mathbf{P}_{k|k}^p \\
+ 	    &+ \frac{P\{\theta_k^p | Z^k\}  P\{\theta_k^l | Z^k\}}{P\{\theta_k^p | Z^k\} + P\{\theta_k^l | Z^k\}} (\hat{\mathbf{x}}_{k|k}^l - \hat{\mathbf{x}}_{k|k}^p)(\hat{\mathbf{x}}_{k|k}^l - \hat{\mathbf{x}}_{k|k}^p)' )
+\end{split}
+ \end{equation}
+
+Une autre méthode de fusion de piste, proposée dans \cite{Blackman1986}, consiste à sélectionner la piste dont le déterminant de matrice de covariance est le plus faible. 
+%======================================
+% Cycle du MHT
+%======================================
+\begin{center}
+\begin{figure}
+\label{fig:MHT}
+\includegraphics[scale=0.6]{SBMHT.png} 
+\caption{Cycle du \ac{TOMHT}.}
+\end{figure}		 
+\end{center}		 
+		 
+%======================================
+% Bilan du MHT
+%======================================
+\subsubsection{bilan}
+
+
+En théorie, les étapes d'un cycle du \ac{MHT} sont les suivantes :
+\begin{enumerate}[label=\arabic*.]
+\item on dispose d'un arbre d'hypothèses au temps $k$ et des prédictions des états de cibles existantes,
+\item au temps $k$, on reçoit $m_k$ mesures validées,
+\item on étend l'arbre des hypothèses d'associations en prolongeant les branches avec les hypothèses possibles sur l'origine des mesures validées,
+\item on évalue la probabilité \textit{a posteriori} de réalisation de chaque branche (énumération exhaustive couteuse),
+\item on calcule les probabilités marginales d'associations relativement à chaque cible,
+\item on met à jour les états des cibles par pondération probabiliste,
+\item on prédit l'état des cibles à l'instant $k + 1$.
+\end{enumerate}
+
+En pratique, pour limiter la combinatoire du \ac{MHT}, on sépare d'abord les cibles en ``clusters'' indépendants; puis on utilise un \ac{MHT} pour chaque ``cluster''. Cette technique ne suffit pas à limiter la combinatoire. On est donc amené é:
+\begin{enumerate}[label=\arabic*.]
+\item éliminer (pruning) les branches ayant une probabilité d'occurrence négligeable,
+\item combiner (merging) les branches ayant conduit au même nombre de cibles pistées avec des estimées comparables.
+\end{enumerate}
+
+Généralement le résultat présenté concerne celui obtenu avec l'hypothèse d'associations la plus probable.
+Ce résultat n'est pas forcément hélas celui correspondant à la réalité \ldots. On peut aussi adopter la présentation décrite en \cite{Blackman1999}. Dans les environnements très denses, seul le pistage par \ac{MHT} des ``clusters''
+de cibles reste possible. Cette approche est présentée en \cite{Demos1990}.
+
+Avantages du \ac{MHT} :
+\begin{enumerate}[label=\arabic*.]
+\item prise en compte de cibles multiples en nombre inconnu,
+\item prise en compte des fausses alarmes.  
+%\end{list}
+\item initialisation des nouvelles cibles détectées,
+\item calcul récursif des probabilités d'associations conjointes cumulées.
+\end{enumerate}
+
+Inconvénients du \ac{MHT} :
+\begin{enumerate}[label=\arabic*.]
+\item le nombre d'hypothèses à gérer croît exponentiellement au cours du temps,
+\item le \ac{MHT} théorique n'est pas exploitable,
+\item on doit utiliser des heuristiques de gestion d'hypothèses pour limiter la combinatoire,
+\item le \ac{MHT} mis en \oe uvre en pratique perd donc son caractère d'optimalité,
+\item la mise en \oe uvre d'un \ac{MHT} opérationnel est très difficile et délicate.
+\end{enumerate}
+
+%----------------------------------------
+% le PMHT
+%----------------------------------------
+
+\subsection{Pistage multi-cibles par \ac{PMHT}}
+
+ Les algorithmes \ac{JPDAF} ou \ac{MHT} utilisent une 
+énumération exhaustive de toutes les associations possibles des  mesures aux pistes.  On est alors confronté à un problème d'explosion combinatoire.  La méthode \acf{PMHT} 
+proposée en 1995 par R.   Streit et T.  Luginbuhl \cite{Streit_Luginbuhl_1993,Streit_Luginbuhl_1994,Streit_Luginbuhl_1995}
+permet d'éviter l'énumération exhaustive des hypothèses d'associations conjointes possibles.\\
+
+L'idée principale du \ac{PMHT} consiste à modéliser les associations comme des variables aléatoires.  Les mesures ne sont plus associées à des pistes précises, mais simultanément à toutes les sources avec des probabilités estimées au 
+moyen de l'algorithme \acf{EM}  de Dempster \cite{Dempster_Laird_Rubin_1977}.\\
+
+Le \ac{PMHT} est une méthode de poursuite 
+de type batch et non temps réel. Il faut stocker les mesures obtenues pendant plusieurs scans avant de pouvoir mettre en {\oe}uvre le \ac{PMHT} \cite{Gauvrit_1997}. L'idée proposée en \cite{Streit_Luginbuhl_1995} consiste à estimer simultanément le vecteur des états cumulés et les probabilités d'assignation des mesures aux sources. On note $\Phi^K$ ce vecteur.\\
+On suppose que certaines mesures peuvent provenir de la même source. Cette possibilité du \ac{PMHT} est réaliste car une source peut en être à l'origine de plusieurs mesures (cas des cibles étendues, des trajets 
+multiples, etc).\\
+
+L'algorithme est le suivant :
+
+\begin{itemize}
+\item[o] on choisit une longueur $K$ du batch,
+\item[o] on suppose connu le nombre $M$ de sources présentes,
+\item[o] la détection des sources peut être $< 1$,
+\item[o] mettre le compteur d'itération à $r=0$,
+\item[o] on doit initialiser le vecteur de paramètres 
+$\hat{\Phi}^{K,0}$,
+\item[o] on affine l'estimation de $\Phi$ à l'itération courante,
+$r+1$ à partir de l'estimation à l'itération précédente 
+$\hat{\Phi}^{K,r}$.
+\end{itemize}
+
+\vspace{3mm}
+L'expérience montre que généralement 3 à 5 itérations suffisent à  obtenir une estimation précise des paramètres. La stabilité est atteinte en moyenne entre 10 et 20 itérations selon le problème.\\
+
+Outre les problèmes de mise 
+en {\oe}uvre numérique, un des problèmes essentiels du \ac{PMHT} reste son 
+initialisation \cite{willett2002pmht, wieneke2007pmht}. 
+
+La figure \ref{fig:PMHT} décrit le cycle du \ac{PMHT}.
+
+\begin{center}
+\begin{figure}
+\includegraphics[scale=0.6]{PMHT.png} 
+\caption{Exemple d'association optimale.}
+\label{fig:PMHT}
+\end{figure}		 
+\end{center}
+
+%=====================================
+% Le SD-ASiignment
+%=====================================
+  
+\subsection{le \acf{SDA} }
+   Une autre alternative au problème d'association est une assignation des pistes aux mesures par programmation de la partie entière. Cet algorithme présenté pour la première fois dans \cite{Pattipati1992} s'avère très efficace pour la trajectographie de cibles en présence de fausses alarmes.
+
+\subsubsection{Principe de la méthode}
+Dans l'assignation d'une mesure à une piste, le problème est reformulé comme étant un problème d'optimisation sous contrainte où la fonction de coût à minimiser est le logarithme népérien négatif de la vraisemblance ou de la densité de probabilité \textit{a posteriori} de l'état de la cible. 
+Pour rappel, l'ensemble des mesures cumulées jusqu'à l'instant $k$ se note $Z^{k}$. Nous avons également défini la séquence particulière de mesures cumulées $\mathbf{Z}^{k,l}$ telle que:
+
+\begin{equation}
+\mathbf{Z}^{k,l} \triangleq \{ \mathbf{z}^{0,i_l},\ldots,\mathbf{z}^{k,i_l},\} =  \{ \mathbf{Z}^{k-1,s},\mathbf{z}^{k,i_l}\} \in Z^k
+\end{equation} 
+Soit $N_c$ le nombre de séquences possibles et pour $ l = \{1,\ldots,N\}$ on note $\theta^{k,l}$ l'évènement suivant:
+\begin{equation}
+ \theta^{k,l} \triangleq  \{ \mathbf{Z}^{k,l} \text{correspond à une piste valide}\}
+\end{equation}
+
+Afin de réduire la dimension du problème, on considère uniquement les séquences $ \mathbf{Z}^{k,l}$ dont la log-vraisemblance négative $\lambda^{k,l}$ de l'évènement $ \theta^{k,l}$  définie par:
+\begin{equation}
+\lambda^{k,l} =  -log \left( p\{\mathbf{Z}^{k,l}|\theta^{k,l} \}\right)
+\end{equation}
+est en dessous d'un certain seuil fixé \textit{a priori}. Après ce seuillage, on dispose
+de $L \leq  N_c$ séquences $\mathbf{Z}^{k,l}$ potentiellement acceptables. L'ensemble des séquences de mesures acceptables est noté:
+
+\begin{equation}
+\mathcal{S} \triangleq \{\mathbf{Z}^{k,l}\}_{l=1}^L 
+\end{equation}
+\textbf{Le problème général à résoudre est le suivant :
+parmi l'ensemble des séquences acceptables possibles, trouver la partition faisable de ${Z}^k$
+la plus vraisemblable.}
+
+
+\subsubsection{Notion de partition faisable des mesures}
+
+
+Les coefficients de la fonction de coût sont calculés à partir des états de la piste préalablement obtenues, ce qui implique nécessairement la génération exhaustive des hypothèses d'associations. On ne cherche pas à effectuer la pondération probabiliste des pistes par les probabilités d'associations conjointes (approche \ac{MHT}), mais plutôt l'affectation ou la partition optimale d'association entre les pistes et les mesures. 
+
+
+Une partition possible $\mathcal{P}$ des mesures de $Z^k$ est un ensemble fini de séquences $\mathbf{Z}^{k,l}$ acceptables appartenant à $\mathcal{S}$. Une partition faisable est donc de la forme:
+
+\begin{equation}
+\mathcal{P} = \{\mathbf{Z}^{k,l_i}\}_{i=0}^I
+\end{equation}
+Partant d'un historique de S ``scans'', l'algorithme \acf{SDA} va chercher à assigner les pistes à des séquences de mesures en cherchant un coût d'assignation minimum tout en respectant la contrainte qu'une piste ne peut être assignée qu'à une mesure au plus et que les mesures ne
+peuvent être assignées qu'à une piste au plus. 
+
+Soit $\mathcal{P}$ une partition faisable des mesures au sens indiqué précédemment. A toute partition $\mathcal{P}$  on peut faire correspondre l'évènement suivant :
+
+\begin{equation}
+\theta(\mathcal{P}) = \{ \text{la partition $\mathcal{P}$ est correcte}\}
+\end{equation}
+
+La partition optimale $\mathcal{P}^*$ (au sens du
+maximum de vraisemblance) est celle qui maximise la fonction de vraisemblance $p\{\mathbf{Z}^{k}|\theta^{\mathcal{P}} \}$, c'est à dire:
+
+
+\begin{equation}
+\mathcal{P}^* = \arg\max_{\mathcal{P}} p\{\mathbf{Z}^{k}|\theta^{\mathcal{P}} \}
+\end{equation}
+ 
+La mise en équation devient un problème de type ``NP-hard'' et seule une technique de relaxation lagrangienne permet de s'approcher de la solution optimale tout en
+conservant une complexité raisonnable.
+Dans leurs articles, Pattipati \textit{et al.} \cite{Pattipati1992} et Poor et al. \cite{Poore1995} développent une approche de
+relaxation lagrangienne à plusieurs niveaux permettant ainsi de ramener la résolution du problème
+d’assignation sur S ``scan'' à une série de résolution d’assignation sur 2 ``scan''. Ces méthodes sont à la fois
+applicable au problème d'initialisation de pistes mais aussi de continuité de piste.
+Le problème d'assignation est à l'origine un problème lié à la théorie de l'économie visant à minimiser un coût
+de production (pour augmenter le profit) en utilisant toutes les ressources disponibles. Lorsque le problème
+d'assignation SD est ramené à un problème 2D il est nécessaire de disposer un d'une technique qui permet
+d'obtenir le coût minimal (ou profit maximal) d'association. L'algorithme Auction développé à cet effet est adapté
+au contexte d'assignation d'une mesure issue d'un capteur à une piste dans l'article \cite{Pattipati1992}. En effet,
+l'algorithme Auction a été développé dans un contexte économique à objectifs plus lucratifs. Il existe d'autres
+techniques telles que l'approche de Jonker, Volgenant et Castanon (algorithme JVC) utilisé dans \cite{Jonker1987}. Cependant ces approches ne modifient pas la théorie sur le
+SD-Assignment. C'est pourquoi nous utiliserons l'algorithme Auction dans cette étude en raison de simplicité de
+programmation.
+
+
+\subsubsection{Formulation du problème}
+Nous considérons $S$ ``scans'' composés de $m_k$ observations pour chaque ``scan'' à l'instant $k$ $(\forall k = {1,..., S})$. Nous
+présentons ici le cas particulier où $S = 3$ et le système reçoit 2 mesures aux ``scans'' 1,2 et 3  tel que :
+
+\begin{equation}
+m_1 =m_2 = m_2 =2
+\end{equation}
+
+Par exemple, comme le montre la figure \ref{fig:SDA} trois balayages de capteurs produisent six détections (deux par ``scan''). Les détections de la même couleur appartiennent au même ``scan''. Comme chaque ``scan'' génère deux détections, il y a probablement deux cibles dans la région de surveillance. Les mesures peuvent être issues de vraies cibles mais également de fausses alarmes. Pour choisir entre différentes possibilités d'affectation ou d'association, il faut évaluer la matrice des coûts.
+\begin{center}
+\begin{figure}
+\includegraphics[scale=0.6]{SDA.png} 
+\caption{Exemple d'association optimale.}
+\label{fig:SDA}
+\end{figure}		 
+\end{center}		 
+		 
+
+Nous définissons $\mathbf{z}_{i_{1},i_{2}, \ldots,i_{S}}$ la variable caractérisant la séquence de mesures $\{\mathbf{z}_{i_1}, \mathbf{z}_{i_2}, \ldots,\mathbf{z}_{i_S}\}$ issue d'une même piste. 
+Par définition, la séquence $\mathbf{z}_{3,2,2}$ se rapporte à l'événement que les mesures 3 du premier ``scan'', 2 du second ``scan'' et 2 du troisième ``scan'' sont issue de la même cible. 
+De plus, nous introduisons l'index 0 pour modéliser la non-détection d'une cible. Ainsi la séquence $\mathbf{z}_{3,0,2}$ signifie que la cible n'a pas été détectée au deuxième ``scan''. La variable binaire $\mathbf{z}_{i_1,i_2, \ldots,i_S}$ est définie pour une hypothèse de piste telle que:
+
+ 	 	   \begin{equation}   	 	   
+ 	   \mathbf{z}_{i_1,i_2, \ldots,i_S}=
+ 	   	   \begin{cases}
+ 1 & \text{si la séquence de mesures est bien associée à la cible pistée} \\ 
+  0 & \text{sinon}
+ 	  \end{cases} 
+ 	    \end{equation}
+ 	    
+
+Finalement, l'ensemble de tous les scénarios d'association sera une collection d'hypothèses de piste qui prend
+en compte toutes les permutations d'observations possibles. 
+
+D'une manière similaire, la variable $\mathbf{c}_{i_1,i_2, \ldots,i_S}$ définit le coût d'association cumulée entre la piste est les $S$ mesures.
+Cette fonction de coût est obtenue à partir du score négatif d'une piste.
+
+
+
+Le calcul du coût peut dépendre de nombreux facteurs, tels que la distance entre les détections et la distribution de covariance de chaque détection. Pour illustrer le concept de base, les coûts d'affectation pour quelques hypothèses sont donnés hypothétiquement dans le tableau \ref{table:cost}.
+\begin{center}
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+Hypothèse d'association & Scan $k-2$ & Scan $k-1$ & Scan $k$ & coût \\ 
+\hline 
+1 & 0 & 1 & 1 & -10.2 \\ 
+\hline 
+2 & 1 & 2 & 0 & -10.9 \\ 
+\hline 
+3 & 1 & 1 & 1 & -18.0 \\ 
+\hline 
+4 & 1 & 1 & 2 & -14.8 \\ 
+\hline 
+5 & 1 & 2 & 1 & -17.0 \\ 
+\hline 
+6 & 2 & 0 & 1 & -13.2 \\ 
+\hline 
+7 & 2 & 0 & 2 & -10.6 \\ 
+\hline 
+8 & 2 & 2 & 0 & -11.1 \\ 
+\hline 
+9 & 2 & 1 & 2 & -14.1 \\ 
+\hline 
+10 & 2 & 2 & 2 & -16.7\\
+\hline   
+\end{tabular} 
+\caption{Coût d'association par hypothèse.}
+\label{table:cost}
+\end{table}
+\end{center}
+Dans ce tableau, 0 indique qu'une piste n'est associée à aucune détection dans le ``scan''. Supposons que les hypothèses non présentées dans le tableau sont tronquées par déclenchement ou négligées en raison des coûts élevés. Pour représenter de manière concise chaque piste, nous utilisons $c_{i,j,k}$ pour représenter le coût d'association de l'observation $i$ dans le ``scan'' 1, $j$ dans le ``scan'' 2 et $k$ dans le ``scan'' 3. Par exemple, pour l'hypothèse d'affectation 1, $c_{0,1,1}  = -10,2$. Plusieurs hypothèses de piste sont en conflit avec d'autres dans le tableau. Par exemple, les deux affectations les plus probables, $c_{1,1,1}$ et $c_{1,2,1}$ sont incompatibles car elles partagent la même observation dans les analyses 1 et 3.
+
+Le but de résoudre un problème d'affectation \ac{SDA} est de trouver l'hypothèse d'affectation compatible la plus probable tenant compte de toutes les détections. Cependant, lorsque $S \geq 3$, le problème est connu pour évoluer avec le nombre de pistes et de détections à un taux exponentiel (NP-difficile). La méthode de relaxation lagrangienne est couramment utilisée pour obtenir efficacement la solution optimale ou sous-optimale pour un problème d'affectation S-D.
+
+
+A partir de ces définitions, le problème de formation d'une piste sur $N$ ``scans'' de données peut être formulé comme un problème d'optimisation dont l'objectif est de minimiser le coût d'association $\nu(\mathbf{z})$ telle que:
+
+ 	 	   \begin{equation}  
+ 	 	   \label{eq:minimization}
+\nu(\mathbf{z})  =\min\sum_{i_1=0}^{S_1}\ldots\sum_{i_S=0}^{S_S}\mathbf{c}_{i_1,i_2, \ldots,i_S}\mathbf{z}_{i_{1},i_{2}, \ldots,i_{S}}
+ 	    \end{equation}
+sous la contrainte que la piste n'est associée qu'à une observation se qui s'exprime mathématiquement par la
+formule suivante :
+
+ 	 	   \begin{equation}  
+ 	 	    \label{eq:contrainteMEsure}
+ \sum_{i_1=0}^{S_1}\ldots\sum_{i_S=0}^{S_S} \mathbf{z}_{i_{1},i_{2}, \ldots,i_{S}}=1
+ 	    \end{equation}
+L'équation (\ref{eq:contrainteMEsure}) montre alors qu'il existe un nombre de contraintes égale au nombre total de mesures. Pour
+notre exemple, l'équation sous contrainte affectée à la première mesure du premier ``scan'' s'écrit : 	    
+
+ 	 	   \begin{equation}  
+ \mathbf{z}_{1,2,0} +  \mathbf{z}_{1,1,1} +  \mathbf{z}_{1,1,2} + \mathbf{z}_{1,2,1} = 1 
+ 	    \end{equation}
+La solution exacte au problème d'assignation des mesures aux pistes sur une longueur $S$ de ``scans'' (avec $S > 3$ )
+peut être obtenue en effectuant l'énumération de tous les scénarios d'association. Cependant une approche de
+relaxation lagrangienne peut être utilisée pour approcher la solution.
+ 	    
+\subsubsection{Application de la relaxation lagrangienne pour $S = 3$}
+L'algorithme \ac{SDA} est un algorithme de type ``NP-hard'' lorsque la dimension de ``scan'' est supérieure
+à trois (\textit{i.e.} $S > 3$), ce qui signifie que le coût de calcul de la solution optimale augmente de façon exponentielle lorsque que le nombre de mesures augmente. Cependant, Poor, deb et Pattipati \cite{Pattipati1992} ont prouvé que si une proposition d'assignation des mesures aux pistes est satisfaisante (pas nécessairement optimale) alors la
+relaxation lagrangienne permet de rendre la complexité de l'algorithme \ac{SDA} raisonnable.
+Pour illustrer la relaxation lagrangienne, nous nous intéressons uniquement dans cette partie à la dimension
+S = 3 . Le problème d'optimisation sous contrainte présenté par l'équation (\ref{eq:minimization}) revient à la minimisation de la
+fonction définie par :
+
+  	 	   \begin{equation}  
+  	 	   \label{eq:contrainteGlobale}
+\nu(\mathbf{z}) = \min\sum_{i_1=0}^{m_1}\sum_{i_2=0}^{m_2}\sum_{i_3=0}^{m_3}\mathbf{c}_{i_1,i_2,i_3}\mathbf{z}_{i_{1},i_{2},i_{3}}
+ 	    \end{equation}
+sous les contraintes: 	    
+ 	 	   \begin{equation}  
+ 	 	   \label{eq:contrainte1}
+(\forall i_3 = \{1,\ldots,m_3\}), \sum_{i_1=0}^{m_1}\sum_{i_2=0}^{m_2}\mathbf{z}_{i_{1},i_{2},i_{3}} = 1 
+ 	    \end{equation}
+        \begin{equation}  
+        \label{eq:contrainte2}
+(\forall i_2 = \{1,\ldots,m_2\}), \sum_{i_1=0}^{m_1}\sum_{i_3=0}^{m_3}\mathbf{z}_{i_{1},i_{2},i_{3}} = 1 
+ 	    \end{equation}
+ 	    \begin{equation} 
+ 	    \label{eq:contrainte3} 
+(\forall i_1 = \{1,\ldots,m_1\}), \sum_{i_2=0}^{m_2}\sum_{i_3=0}^{m_3}\mathbf{z}_{i_{1},i_{2},i_{3}} = 1 
+ 	    \end{equation}
+L'approche de relaxation lagrangienne consiste à supprimer un ensemble de contraintes, dans notre exemple
+l'ensemble lié à la contrainte (\ref{eq:contrainte1}), en l'exprimant à travers le coefficient multiplicateur de Lagrange associé à la
+fonction (\ref{eq:contrainteGlobale}). Cette approche permet de réduire le problème 3D à un problème 2D d'assignation des mesures
+aux pistes. L'idée est de lever la contrainte liée au troisième ``scan'' en pénalisant cette dernière.
+ 	    
+ 	    Soit $u_{i_3},(\forall i_3 \in \{0,\ldots,m_3\})$ un ensemble de coefficient multiplicateur de Lagrange avec $u_0=0$ et le choix des
+valeurs de $u_{i_3}$ est discuté dans la partie suivante. Ainsi, plutôt que d'appliquer strictement la contrainte
+(\ref{eq:contrainte1}), Poor \textit{et al.} \cite{Poore1995} reformulent l'expression en introduisant le multiplicateur de Lagrange tel que la fonction lagrangienne s'écrit :
+
+
+ 	 	   \begin{equation}  
+ 	 	   \label{eq:contrainteGlob2}
+L(u) =   \sum_{i_3=0}^{m_3} u_{i_3} \cdot (\sum_{i_1=0}^{m_1}\sum_{i_2=0}^{m_2} \mathbf{z}_{i_{1},i_{2},i_{3}} -1 )
+ 	    \end{equation}
+Le lagrangien est introduit directement dans pour obtenir la nouvelle fonction à minimiser qui s'écrit :
+ \begin{equation}  
+\label{eq:mincostfunction}
+q(u) =  \min  \sum_{i_1=0}^{m_1}\sum_{i_2=0}^{m_2}\sum_{i_3=0}^{m_3}  b_{i_{1},i_{2},i_{3}}    + \sum_{i_3=0}^{m_3} u_{i_3}   
+ \end{equation}
+ 
+sous les contraintes (\ref{eq:contrainte2}) et (\ref{eq:contrainte3}) et où :
+ \begin{equation} 
+b_{i_{1},i_{2},i_{3}} = (c_{i_{1},i_{2},i_{3}} -  u_{i_3} )  \cdot \mathbf{z}_{i_{1},i_{2},i_{3}} 
+ \end{equation} 	
+ 
+Ainsi, la contrainte (\ref{eq:contrainte1}) concernant l'assignation du troisième ensemble de mesures a donc été relaxée (ou
+remplacée) par la définition d'une nouvelle fonction à minimiser $q(u)$. De plus, la minimisation de la fonction
+(\ref{eq:mincostfunction}) construite à partir troisième ensemble de mesures peut être associée à un problème de minimisation d'un
+couple de mesure  $(i_1,i_2)$  issue du premier et troisième ``scan''.
+
+ \begin{equation} 
+d_{i_{1},i_{2}} = \min_{i_3} (c_{i_{1},i_{2},i_{3}} -  u_{i_3} )  
+ \end{equation} 
+ainsi l'expression (\ref{eq:mincostfunction})  devient un problème d'assignation à 2 dimensions telle que :
+
+ \begin{equation}  
+\label{eq:mincostfunction2}
+q(u) =  \min_{w_{i_1,i_2}} \left( \sum_{i_1=0}^{m_1}\sum_{i_2=0}^{m_2}    d_{i_{1},i_{2}} \right)
+\end{equation}
+où $w_{i_1,i_2}$ est l'index, réduit d'une dimension, d'assignation des mesures $i_1$ du premier ``scan'' et $i_2$ du second ``scan'' aux pistes. Les contraintes sont telles que:
+
+\begin{equation}  
+\sum_{i_1=0}^{m_1} w_{i_1,i_2} = 1, (\forall i_2 =\{1,\ldots,m_2\})
+\end{equation}
+et
+\begin{equation}  
+\sum_{i_2=0}^{m_2} w_{i_1,i_2} = 1, (\forall i_1 =\{1,\ldots,m_1\})
+\end{equation}
+La minimisation de la fonction (\ref{eq:mincostfunction2}) n'est soumise qu'à deux ensembles de contraintes donc le problème a bien été ramené à un problème d'assignation à 2 dimensions. Cependant, cette solution résulte de la relaxation et la contrainte (\ref{eq:contrainte1}) n'est pas toujours satisfaite. En particulier, une mesure du troisième ``scan'' pourrait être utilisée simultanément pour la minimisation de la fonction (\ref{eq:mincostfunction2}). Pour éviter ce cas, Poor propose
+
+L'introduction du terme $L(u)$ , donné en (\ref{eq:contrainteGlob2}), permet de lever la contrainte en la pénalisant. Le multiplicateur de
+Lagrange peut être soit positif soit négatif. Par exemple, un multiplicateur de Lagrange négatif (\textit{i.e.} $u_{i_3} < 0$)
+pénalise plus l'observation $i_3$ dans le sens où la contribution du terme associé à l'observation $i_3$ est importante.
+Il vient dans ce cas :
+\begin{equation}  
+-u_{i_3}\cdot \left[ \sum_{i_1=0}^{m_1}\sum_{i_2=0}^{m_2}\mathbf{z}_{i_{1},i_{2},i_{3}} -1 \right] >0  
+\end{equation}
+
+Par ailleurs un choix du multiplicateur de Lagrange positif (\textit{i.e.} $u_{i_3} > 0$ ) pénalise toute utilisation de l'observation $i_3$ dans le calcul de la minimisation.
+
+Par conséquent, la solution duale (solution intermédiaire) de la résolution du problème d'assignation 3-D ne
+permet pas de satisfaire pleinement l'exigence liée à la contrainte (\ref{eq:contrainte1}). Cependant, les contraintes (\ref{eq:contrainte2}) et (\ref{eq:contrainte3})
+sont elles satisfaites. Ainsi, une solution sous-optimale appelée solution principale est réalisée en traitant
+d'abord le problème de d'assignation des deux premiers ``scans'', puis en extrayant la solution qui intègre le
+troisième ``scan'' au problème d'assignation 2D qui minimise le coût tout en maintenant la contrainte sur le
+troisième ``scan''. Le coût $\nu(\bar{\mathbf{z}})$ associé à la solution principale sera en général plus grand que le coût
+d'association de la solution optimale inconnue :
+\begin{equation}  
+q(u) \leq \nu( \mathbf{z} ) \leq \nu(\bar{\mathbf{z}})
+\end{equation}
+
+Le coût de la solution principale ainsi que le coût de la solution intermédiaire sont considérés comme étant les
+bornes inférieures et supérieures du véritable coût d'association. Ainsi, une solution itérative peut être proposée
+pour approcher la solution optimale c'est à dire pour se rapprocher du coût d'association  $\nu( \mathbf{z} ) $. A chaque
+itération, les multiplicateurs de Lagrange permettent d'augmenter $q(u)$ et diminuer $\nu(\bar{\mathbf{z}})$. Sur l'ensemble des itérations, le maximum $q^*(u)$ et le minimum $\nu^*(\bar{\mathbf{z}})$ sont conservés. Une condition d'arrêt de la relaxation
+lagrangienne est obtenue lorsque l'écart entre les bornes des extrémums divisé par le coût de la solution
+intermédiaire est inférieur à un seuil $\gamma$ prédéterminé.
+\begin{equation} 
+\label{eq:critèreArret} 
+\frac{q^*(u) - \nu^*(\bar{\mathbf{z}})}{q^*(u) }\leq \gamma
+\end{equation}
+
+Cependant en raison des minima locaux, il n'y aucune garantie pour le critère d'arrêt (\ref{eq:critèreArret}) soit satisfait pour une
+itération donnée. Dans la plupart des applications \cite{Blackman1999}, on combine ce critère d'arrêt avec un
+nombre maximum d'itération à réaliser.
+
+Le déroulement de la relaxation lagrangienne est maintenant décrit jusqu'à l'étape de mise à jour des
+coefficients multiplicateurs $u_{i_3}$. Initialement ce coefficient est pris à 0. Après chaque itération pour laquelle la
+solution n'est pas satisfaisante et le nombre d'itérations maximum n'est pas atteint, les multiplicateurs de
+Lagrange sont mis à jours pour obtenir une meilleure solution.
+
+\subsubsection{bilan}
+La méthode de pistage multi-cibles proposée par \cite{Pattipati1992} possède les caractéristiques suivantes :
+\begin{itemize}
+\item[-]c'est une méthode de type batch - on doit mémoriser un certain nombre de ``scans'',
+\item[-]c'est une méthode non bayésienne - on recherche la partition optimale au sens du maximum de vraisemblance,
+\item[-]le nombre des cibles présentes est inconnu,
+\item[-]la probabilité de détection des cibles est unitaire,
+\item[-]la complexité du problème est NP-hard,
+\item[-]elle permet l'initialisation de pistes,
+\item[-]elle peut être étendue au cas multi-senseurs puisque le problème d'assignation de mesures d'un
+senseur au cours du temps est analogue au problème d'associations entre mesures issues de plusieurs
+senseurs délivrées au même instant.
+\end{itemize}
+La figure \ref{fig:SDA} représente le cycle de recherche de la solution optimale d'association des mesures aux pistes. 
+%======================================
+% Cycle du MHT
+%======================================
+\begin{center}
+\begin{figure}
+\label{fig:SDA}
+\includegraphics[scale=0.6]{Cycle_SDA.png} 
+\caption{Cycle du \ac{SDA}.}
+\end{figure}		 
+\end{center}
+
+ 
+Avantages du \ac{SDA} :
+\begin{enumerate}[label=\arabic*.]
+ \item prise en compte de cibles multiples en nombre inconnu,
+ \item prise en compte des fausses alarmes,  
+%\end{list}
+\item initialisation des nouvelles cibles détectées,
+\item une seule piste par cible (pas d'hypothèse d'association) est disponible à la fin de chaque batch.
+\end{enumerate}
+
+Inconvénients du \ac{SDA} :
+\begin{enumerate}[label=\arabic*.]
+\item le nombre d'hypothèses à gérer croît exponentiellement au cours du temps temps que la limite du batch n'est pas atteinte,
+\item on doit utiliser des heuristiques de gestion d'hypothèses pour limiter la combinatoire,
+\item le \ac{SDA} mis en \oe uvre en pratique perd donc son caractère d'optimalité,
+\item la mise en \oe uvre d'un \ac{SDA} opérationnel est très difficile et délicate.
+\end{enumerate}
+ 
+ 
+ 
+  
+ \begin{thebibliography}{9} 
+ %==================================
+ % Association
+ %==================================
+ \bibitem{ONERA2020}
+ J. Floquet, J. Dezert and B. Pannetier, \emph{F111-1 Etat de l'art du projet ARCADIS-DRIL}, RT 1/xxxxx, 2020.
+ \bibitem{Kirubarajan00}
+ T. Kirubarajan, Y Bar-Shalom, K.R. Pattipati and I. Kadar, \emph{Ground target tracking with
+variable structure IMM estimator},
+IEEE on Aerospace and Electronic Systems, Vol.36, no. 1, Jan. 2000.
+  \bibitem{BarShalom1995}
+ Y. Bar-Shalom and X.R. Li, \emph{Multitarget-multisensor tracking : principles and techniques},  ISBN 978-0964831209,  Yaakov Bar-Shalom 1995.
+%==================================
+% MHT
+%==================================
+  \bibitem{Reid1979}
+ D. Reid, \emph{An algorithm for tracking multiple targets}, IEEE Transactions on Automatic Control, 1979. 
+   \bibitem{Kim2015}
+   C. Kim, F. Li, A. Ciptadi, J. M. Rehg, \emph{Multiple Hypothesis Tracking Revisited}, Proc. of IEEE International Conference on Computer Vision (ICCV), Dec. 2015.
+    \bibitem{Kurien1990}
+   T. Kurien, \emph{Issues in the design of practical multitarget tracking algorithms. Multitarget-Multisensor Tracking : Advanced Applications}, Y. Bar-Shalom ed., Artech House, 1990.
+    \bibitem{Blackman1986}
+    S Blackman, \emph{Multiple Target Tracking with Radar Applications}, Artech House, 1986.
+  \bibitem{Demos1990}
+  G. C. Demos, T. J. Ribas, R. A. Broida, and S. S. Blackman, \emph{Applications of MHT to dim moving targets}, Proc. of the SPIE, vol.1305, p. 297-309, Apr. 1990.
+ %==================================
+ % SDA
+ %==================================
+ \bibitem{Poore1995}
+ A. B. Poore and al.,\emph{Data association problem posed as multi-dimensional assignment problems :problem formulation and numerical simulations}, Proc. of  SPIE, signal and data processing of small targets 1993, Vol. 1954, Apr.
+1995.
+ \bibitem{Pattipati1992}
+ K. R. Pattipati, S. Deb, Y. Bar-Shalom and R. B. Walshburn,\emph{A new relaxation algorithm and passive sensor data association}, IEEE transactions on automatic control, vol. 37, no. 2, Feb. 1992.
+ \bibitem{Jonker1987}
+R. Jonker, A. Volgenant, Castanon,\emph{A shortest augmenting path algorithm for dense and sparse linear assignment
+problems}, J. Computing, vol. 38, 1987.
+ \bibitem{Balinski1985}
+M. Balinski,\emph{Signature methods for the assignment problem}, Operations research, no. 33, May 1985
+ \bibitem{Poop2001}
+R.L.Popp, K. R. Pattipati, Y. Bar-Shalom,\emph{m-Best S-D Assignment Algorithm with Application to Multitarget Tracking}, IEEE transactions on areospace and electronic systems, vol. 37, no. 1, Jan. 2001. 
+  \bibitem{Blackman1999}
+S. S. Blackman, R. Popoli,\emph{Design and Analysis of Modern Trackin Systems}, Artech House 1999. 
+\bibitem{BarShalom2009}
+Y. Bar-Shalom,F. Daum, J. Huang, \emph{the probabilistic data association filter}, IEEE Control Systems Magazine, vol. 29, no. 6, Dec. 2009. 
+\bibitem{Streit_Luginbuhl_1993}
+Roy L. Streit and Tod E. Luginbuhl. A probabilistic multi-hypothesis tracking algorithm without enumeration and pruning. In Proceedings of the Sixth Joint Service Data Fusion Symposium, pages 1015-1024, 1993.
+
+\bibitem{Streit_Luginbuhl_1994}
+Roy L. Streit and Tod E. Luginbuhl. Maximum likelihood method for probabilistic multihypothesis tracking. In Proceedings of the 1994 SPIE International Symposium on Optical Engineering and Photonics in Aerospace Sensing, volume 2235-24, 1994.
+%==========================================
+% Biblio PMHT
+%==========================================
+
+\bibitem{Streit_Luginbuhl_1995}
+R. L. Streit and T. E. Luginbuhl, \emph{Probabilistic multi-hypothesis tracking}, Technical Report NUWC-NPT Technical Report 10,428, Naval Undersea Warfare Center Division (NUWC), 1995.
+
+\bibitem{Dempster_Laird_Rubin_1977}
+A. P. Dempster, N.M. Laird, and D.B. Rubin, \emph{Maximum likelihood from incomplete data via the em algorithm}, J. Royal Statistical Society, 1977.
+
+\bibitem{Gauvrit_1997}
+H. Gauvrit, \emph{Extraction Multi-Pistes : Approche Probabiliste et Approche Combinatoire}, PhD dissertation, Université de Rennes 1, 1997.
+
+\bibitem{willett2002pmht}
+P. Willett, Y. R. and R. L. Streit, \emph{PMHT: Problems and some solutions},
+IEEE Transactions on Aerospace and Electronic Systems, pages 738--754, 2002.
+
+\bibitem{wieneke2007pmht}
+M. Wieneke and K. Wolfgang,\emph{The PMHT: Solutions to some of its problems, Signal and Data Processing of Small Targets}, pages 669917, 2007.
+	 	  \end{thebibliography}
+
+%================================================
+% Pistage de cibles étendues
+%================================================
+
+\section{Pistage de cibles étendues}
+ 
+Traditionnellement, les algorithmes \ac{MTT} sont étudiés et développés pour des scénarios dans lesquels les cibles sont distantes et éloignées des capteurs, et pour lequel on associe en général au plus un écho par cible. En effet, dans un tel
+scénario, un objet n'est pas toujours détecté par le capteur, et s'il est détecté, au plus une cellule de résolution du capteur est occupée par l'objet. A partir de scénarios usuels, les hypothèses spécifiques
+des modèles mathématiques des algorithmes \ac{MTT} reposent sur les hypothèses dites de ``petits objets'': les objets évoluent indépendamment, chaque objet peut être modélisé comme un point sans occuper plusieurs cellules de résolution du capteur, et chaque objet donne lieu à une seule mesure au maximum par tranche de temps ou ``scan'' capteur.
+
+Le \ac{MTT} basé sur les hypothèses de ``petits objets'' est un problème complexe dû au bruit du capteur, aux détections manquées, détections d'encombrement, l'origine de la mesure est inconnue et le nombre de cibles est fluctuant. 
+
+Au cours de la dernière décennie les hypothèses ont évoluées vers une problématique d'``objets étendus'' au sens qu'ils occupent plusieurs cellule de résolution du capteur. Cette partie présente la formulation du problème de trajectographie multi-cible à partir des ensembles finis aléatoires \acf{RFS}. Cette problématique a initialement été présenté par Mhaler dans \cite{Mahler2003} et fait l'objet aujourd'hui de recherches très actives. Elle consiste à se placer dans un contexte multi-objets et à estimer une  situation multi-cibles globale. Cette seconde catégorie repose sur une modélisation des \acf{RFS}. Un \ac{RFS} est un ensemble dont les éléments sont les vecteurs d'état de toutes les cibles présentes dans la région de surveillance. Le nombre d'éléments du \ac{RFS} est lui-même une variable aléatoire pouvant évoluer au cours du temps. Cette particularité permet non-seulement de représenter plusieurs objets en même temps, mais également de formaliser l'évolution du nombre d'objets présents dans la région d'observation. 
+
+Dans un premier temps, le filtre bayésien est présenté dans un cas mono-cible. Puis en considérant les ensembles finis aléatoires, le cas mono-cible est étendu au cas multi-cible en utilisant plus particulièrement l'approche de propagation des moments du premier ordre.
+
+\subsection{Filtre mono-cible} 
+Dans la plupart des problèmes d'estimation de la dynamique d'un état, il est supposé que l'état suit un processus de Markov dans un espace d'état $\mathcal{X} \subseteq \mathbb{R}^{n_x}$, avec une densité de transition de l'état $f_{k|k-1}(.|.)$, \textit{i.e.} connaissant l'état $x_{k-1}$ au temps $t_{k-1}$, la densité de probabilité de la transition à l'état $x_{k}$ au temps $t_{k}$ est:
+ 
+\begin{equation}
+ f_{k|k-1}(x_{k}|x_{k-1})
+ \label{f}
+\end{equation}
+où $n_x$ est la dimension de l'état. Ce processus markovien est partiellement observé dans l'espace des observations $\mathcal{Z} \subseteq \mathbb{R}^{n_z}$. A travers la modélisation de la fonction de vraisemblance $g_k(.|.)$, \textit{i.e.} connaissant l'état $x_{k}$ au temps $t_{k}$, la vraisemblance d'une mesure $z_k \in \mathcal{Z}$ au temps $t_k$ se note:
+
+\begin{equation}
+ g_k(z_{k}|x_{k})
+ \label{g}
+\end{equation}
+
+La densité de probabilité \textit{a posteriori} d'un état $x_{k}$ au temps $t_k$ connaissant la séquence d'observation $Z^k$ se note 
+
+\begin{equation}
+ p_k(x_{k}|Z^{k})
+\end{equation}
+
+Finalement, dans un cas mono-cible, la densité \textit{a posteriori} $p_k(x_k|Z^k)$ de l'état $x_{k}$ d'une cible au temps $t_{k}$ est obtenue en utilisant la formule de Bayes. Il vient: 
+\begin{equation}
+\label{ddpapriori}
+p_{k|k-1}(x_k|Z^{k-1})=\int{ f_{k|k-1}(x_{k}|x_{k-1})  p_{k-1}(x_{k-1}|Z^{k-1})}
+\end{equation}
+\begin{equation}
+\label{ddpaposteriori}
+  p_k(x_{k}|Z^{k})=\frac{{g_k(z_{k}|x_{k}) p_{k|k-1}(x_k|Z^{k-1})}} {\int{g_k(z_{k}|x) p_{k|k-1}(x|Z^{k-1})  dx}}
+\end{equation}
+où (\ref{ddpapriori}) est la partie prédictive de la densité de probabilité. A partir de la densité de probabilité de l'état (\ref{ddpaposteriori}), il devient possible de déterminer l'estimateur de l'état et sa covariance associée à partir du critère de minimisation des moindre carrés ou du maximum \textit{a posteriori} \cite{BarShalom88}.   
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\subsection{Formulation des ensembles finis aléatoires pour le filtre multi-cible}
+\label{p2}
+Dans la partie précédente, la densité de probabilité d'une cible a été formalisée \textit{a posteriori} de la séquence de mesures $Z^k$. Maintenant, la problématique d'estimation des cibles est étendue au cas multi-cible. Soient $M(k)$ le nombre de cibles au temps $t_k$ et $x_{k-1,1},\cdots, x_{k-1,M(k-1)}$ les états des cibles éléments de $\mathcal{X}$. Au prochain scan $k$, la plupart de ces cibles vont ``mourir'' (\textit{i.e.} disparaître de l'espace d'observation pour diverses raisons qui sont fonctions de l'application), ``survivre'' et donc évoluer avec un nouvel état, et de nouvelles cibles peuvent apparaître ce qui engendre finalement une évolution des $M(k-1)$ vers $M(k)$ états. Le capteur, quant à lui, génère au temps $t_k$, $m_k$ mesures de l'espace d'observation $\mathcal{Z}$. Bien évidemment, l'origine des mesures n'est pas connue et l'ordre d'apparition de ces dernières n'apporte pas d'information significative. Une mesure peut être effectivement soit originaire d'une fausse alarme, d'une nouvelle cible, d'un ensemble de nouvelles cibles ou issues des $M(k-1)$ cibles ou groupe de cibles apparus au temps $t_{k-1}$. L'objectif du pistage multi-cible est d'être capable d'estimer conjointement le nombre de cibles et états associés à partir des mesures dont l'origine est inconnue. 
+\\
+
+Soient $X_k$ l'ensemble des cibles à l'instant $k$ et $Z(k)$ l'ensemble des mesures associées défini dans la partie \ref{mult:definitions}. L'ensemble des cibles est  défini de la manière suivante:  
+\begin{equation}
+ X_k= \{x_{k,1},\ldots,x_{k,M(k)}\}
+\end{equation}
+
+
+Dans un système mono-cible, l'incertitude est caractérisée en modélisant l'état $x_k$ du système et l'observation $z_j(k)  (\forall j \in \{1\,\ldots,m_k\})$ à partir d'un vecteur aléatoire. D'une façon analogue, l'incertitude sur l'ensemble des états au temps courant est caractérisée en modélisant l'état global $X_k$ et l'ensemble $Z(k)$ comme étant des ensembles finis aléatoires. Un ensemble fini aléatoire \ac{RFS} $X$ est simplement un ensemble fini de variables aléatoires qui peut être décrit par une probabilité de distribution discrète et une famille de densités jointes.  La densité discrète caractérise la cardinalité de $X$ tandis que pour une cardinalité donnée, une densité appropriée caractérise la distribution jointe des éléments de $X$. 
+\\
+
+Le modèle comme étant des ensembles finis aléatoires. Un ensemble fini aléatoire \ac{RFS} est décrit et représente l'ensemble des états des cibles au cours du temps en prenant en compte la modélisation de la dynamique des cibles, la naissance et la mort des états. Pour un état multi-cible $X_{k-1}$ au temps $t_{k-1}$, chaque état $x_{k-1} \in  X_{k-1}$ continue d'exister au temps $t_k$ avec une probabilité $p_{S,k}(x_{k-1})$ ou disparaît (\textit{i.e.} meurt) avec la probabilité $1-p_{S,k}(x_{k-1})$. Connaissant l'existence de la cible au temps $t_k$, la densité de transition de l'état $x_{k-1}$ à l'état $x_k$ est donnée par l'expression \ref{f}. Par conséquent, pour un état $x_{k-1} \in X_{k-1}$, l'état $x_{k}$ est modélisé par le comme étant des ensembles finis aléatoires. Un ensemble fini aléatoire \ac{RFS}:
+
+\begin{equation}
+S_{k|k-1}(x_{k-1})
+\end{equation}
+qui peut prendre pour valeur soit le singleton $\{x_{k}\}$ si la cible survit soit $\varnothing$ si la cible meurt (\textit{i.e.} disparaît). Par ailleurs, au temps $t_k$ de nouvelles cibles peuvent apparaître soient de façon spontanée (le terme de cibles naissantes est alors employé) soit après un masquage lié à une autre cible (le terme de cibles non résolues est alors utilisé).  Connaissant l'état multi-cible $X_{k-1}$ au temps $t_{k-1}$, l'état des cibles $X_{k}$ au temps $t_{k}$ est défini par l'union des cibles survivantes, des cibles non résolues et des cibles naissantes. La dynamique des cibles est donc modélisée par un comme étant des ensembles finis aléatoires. Un ensemble fini aléatoire \ac{RFS} tel que:
+ 
+\begin{equation}
+ X_k=\left[\bigcup_{\zeta\in X_{k-1}}S_{k|k-1}(\zeta)\right]\cup \left[\bigcup_{\zeta\in X_{k-1}}B_{k|k-1}(\zeta)\right]\cup \sigma_k
+\end{equation}
+
+\noindent où $X_{k-1}$ est l'ensemble d'états des cibles à l'instant $k-1$, $S_{k|k-1}(\zeta)$ est associé à l'ensemble fini aléatoire des cibles survivantes. On définit  $B_{k|k-1}(\zeta)$ par ailleurs un ensemble fini aléatoire \ac{RFS} des cibles survivantes issues des états précédents $\zeta$ qui évoluent en groupe à l'instant $k-1$. Et enfin $\sigma_k$ est le \ac{RFS} définit comme un ensemble fini aléatoire  modélisant les cibles naissantes.
+ 
+	Le \ac{RFS} des mesures est obtenu à partir des cibles $x_k \in X_k$ présentes au temps $t_k$. Une cible $x_k$ est soit détectée avec une probabilité de détection $p_{D,k}(x_k)$ soit non détectée avec une probabilité $1-p_{D,k}(x_k)$. La densité de probabilité d'obtenir une mesure $z_k$ sachant $x_k$ a été définie précédemment \ref{g}. Ainsi , au temps $t_k$, chaque état $x_k \in X_k$ génère un comme étant des ensembles finis aléatoires. Un ensemble fini aléatoire \ac{RFS} noté:
+
+\begin{equation}
+\Theta_{k}(x_k)
+\end{equation}
+
+Cet ensemble est soit égal au singleton ${z_k}$ lorsque la cible est détectée soit égale à l'ensemble vide $\null$ dans le cas d'une non détection de la cible $x_k$. En plus des mesures originaires des cibles, les capteurs génèrent un ensemble $\kappa_k$ de fausses alarmes. Ainsi, l'ensemble des mesures $Z(k)$ reçu est formé par l'union des deux ensembles précédents tel que:
+
+\begin{equation}
+ Z(k)=\left[\bigcup_{x\in X_k}\Theta_k(x)\right]\cup K_k
+ \label{equaObs}
+\end{equation}
+ 
+\noindent où $\Theta_{k}(x)$ est le \ac{RFS} des mesures issues des cibles $x$ à l'instant $k$ et $K_k$ est le \ac{RFS} des fausses alarmes à l'instant $k$.
+Il est supposé que les \acf{RFS} constituant (\ref{equaObs}) sont indépendants. 
+
+La figure \ref{fig:RFS} représente la modélisation ensembliste du problème.
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{RFS.png}
+\caption{Modélisation des \acf{RFS}. Espace d'état multi-objets et espace d'état multi-mesures.}
+\label{fig:RFS} 
+\end{center}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Densité de Probabilité (Probability Hypothesis Density : PHD)}
+\label{p3}
+Le filtre \acf{PHD} est utilisé comme une alternative pour réduire la complexité des algorithmes de pistage multi-cible bayésien. Plutôt que de propager la densité de probabilité \textit{a posteriori} $p(x_k|Z^k)$ de chaque cible individuelle, le filtre \acf{PHD} propage les intensités \textit{a posteriori} ainsi que les moments du premier ordre de l'état multi-cible estimé. Le \ac{PHD} désigne la fonction d'intensité d'un \ac{RFS} $X$ définie sur l'espace géométrique $\mathcal{X}$. Cette notion a été introduite par Mahler \cite{Mahler03} qui définit le PHD, appelé aussi fonction d'intensité, comme étant le moment du premier ordre de la densité jointe d'un ensemble de cibles \textit{a posteriori}. 
+
+Finalement, nous désignons donc le \ac{PHD} comme étant une fonction non négative $v$ qui a la propriété suivante sur n'importe quel espace fini $S\subseteq\mathcal{X}$:
+\begin{equation}
+ \mathbb{E}[|X\cap S|]=\int_Sv(x)dx
+\end{equation}
+où $\mathbb{E}$ représente l'espérance mathématique, $|X\cap S|$ représente le nombre de cibles sur l'espace $S$ et $v(x)$ la fonction d'intensité en un point $x$.
+Afin de présenter la récursion du filtre \ac{PHD}, il est rappelé que:
+ \begin{itemize}
+\item chaque cible évolue et génère des mesures indépendantes les unes des autres,
+\item le bruit suit une loi de Poisson dans cette version des \ac{RFS}.
+\end{itemize}
+
+La fonction d'intensité \textit{a priori} $v_{k|k-1}$ de l'ensemble des cibles $X_k$ à l'instant $k$ peut être définie à partir de la fonction d'intensité \textit{a posteriori} $v_{k-1}$ de l'instant précédent $k-1$. L'équation de prédiction devient:  
+\begin{equation}
+ v_{k|k-1}(x)= \int p_{S,k}(\zeta).f_{k|k-1}(x|\zeta).v_{k-1}(\zeta)d\zeta + \int \beta_{k|k-1}(x|\zeta).v_{k-1}(\zeta)d\zeta + \gamma_k(x)
+ \label{RFSpredit}
+\end{equation}
+avec $p_{S,k}(\zeta)$ la probabilité de survie d'une cible $\zeta$, $f_{k|k-1}(.|\zeta)$ est la fonction de transition d'une cible connaissant son état précédent $\zeta$, $\gamma_k(x)$ est la fonction d'intensité de naissance des nouvelles cibles et $\beta_{k|k-1}(.|\zeta)$ est l'intensité des cibles non résolues.
+
+Finalement, connaissant l'ensemble des mesures $Z(k)$ à l'instant $k$, la fonction d'intensité de l'ensemble des cibles peut être estimée de la manière suivante:
+\begin{equation}
+ v_{k}(x)=(1-P_D)v_{k|k-1}(x) + \sum\limits_{z\in Z_k}\dfrac{P_D.g(z|x)v_{k|k-1}(x)}{\kappa_k(z)+\int P_D.g(z|\zeta)v_{k|k-1}(\zeta)d\zeta}
+ \label{RFSestime}
+\end{equation}
+
+ \noindent où $P_D$ est la probabilité de détection d'une cible, $g(z|x)$ est la vraisemblance d'une mesure connaissant l'état d'une cible $x$ et $\kappa_k(z)$ est la fonction d'intensité du bruit qui est modélisée par une loi de poisson tel que le nombre moyen de fausses alarmes $n_{FA}=\beta_{FA}\times V$, avec $\beta_{FA}$ la densité de fausses alarmes et $V$ est l'ensemble du volume observé.
+ 
+ Comme la propagation du \ac{PHD} implique l'utilisation de plusieurs intégrales, il n'existe pas de forme littérale pour représenter la fonction d'intensité \textit{a posteriori}. Les techniques de filtrage particulaire permettent donc d'en fournir une bonne estimation. Cette méthode est appelée \textit{Particle Probability Hypothesis Density} (PPHD) ou encore \textit{Sequential Monte Carlo Probability Hypothesis Density} (SMCPHD) et a été utilisée pour de nombreuses applications de pistage \cite{Lin06, Vo05b, Clark08, Clark06, Clark07, Schuhmacher08}. Ces approches sont cependant sensibles à la quantité d'information à traiter qui contraint ces algorithmes à une utilisation modérée lorsque le nombre de mesures est important. Une autre approche, présentée dans la suite de l'étude, consiste à modéliser la fonction d'intensité par mélange gaussien. 
+
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Présentation du GMPHD                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Modélisation des cibles par mélange de Gaussiennes (Gaussian Mixture Probability Hypothesis Density : GMPHD)}
+Cette partie présente une extension des équations du \ac{PHD} à savoir les équations (\ref{RFSpredit}) et (\ref{RFSestime}) pour un cas linéaire gaussien. Les hypothèses et modèles gaussiens sont décrits dans une première sous-partie, puis dans la sous-partie suivante les équations du \ac{PHD} sont détaillées pour des modèles linéaires gaussien. Finalement une implémentation du filtre obtenu est présentée dans une dernière sous-partie. La fonction homographique n'apparait pas dans la démonstration du \ac{GMPHD}. L'extension du \ac{GMPHD} avec cette fonction par utilisation d'un \ac{EKF} reste triviale.
+
+\subsection{Modèle multi-cible linéaire gaussien}
+\label{MMC_lineairegaussien}
+En plus des propriétés précédentes concernant le PHD, plusieurs hypothèses concernant les modèles linéaires gaussiens des cibles individuelles, des cibles naissantes, des cibles faiblement résolues et des observations sont nécessaires et décrites ci-après.  
+
+\begin{itemize}
+\item Dans un cas linéaire gaussien, il est supposé que les densités de probabilité des modèles et des mesures sont gaussiennes telles que:
+\begin{equation}
+ f_{k|k-1}(x|\zeta)=\mathcal{N}(x;F_{k-1}.\zeta,Q_{k-1})
+\end{equation}
+\begin{equation}
+ g_k(z|x)=\mathcal{N}(z;H.x,R_k)
+\end{equation}
+avec $F_k$ la matrice de transition de l'état du système, $Q_k$ la matrice de covariance du bruit de modèle, $H$ la matrice de transformation de l'espace d'état vers l'espace des mesures et $R_k$ la matrice de covariance du bruit de mesure.
+\item La probabilité de détection et de survie sont constantes sur toute la surface donnée 
+\begin{equation}
+ P_{S,k}(x)=P_{s}
+\end{equation}
+\begin{equation}
+ P_{D,k}(x)=P_{D}
+\end{equation}
+\item L'intensité des cibles naissantes et faiblement résolues sont des RFS correspondant à un mélange de gaussiennes de la forme :
+\begin{equation}
+ \gamma_k(x)=\sum\limits_{i=1}^{J_{\gamma,k}}w_{\gamma,k}^{(i)}.\mathcal{N}\left(x;m_{\gamma,k}^{(i)},P_{\gamma,k}^{(i)} \right) 
+ \label{RFS_naissance}
+\end{equation}
+
+\begin{equation}
+ \beta_{k|k-1}(x|\zeta)=\sum\limits_{j=1}^{J_{\beta,k}}w_{\beta,k}^{(j)}.\mathcal{N}\left(x;F_{\beta,k}^{(j)}\zeta + d_{\beta,k}^{(j)},Q_{\beta,k}^{(j)}\right) 
+ \label{RFS_naissance}
+\end{equation}
+
+où $w_{\gamma,k}^{(i)}$, $m_{\gamma,k}^{(i)}$ et $P_{\gamma,k}^{(i)}$ sont les paramètres de poids, de moyenne et de covariance des gaussiennes représentant les cibles naissantes ainsi que leur nombre $J_{\gamma,k}$. Pour le \ac{RFS} des cibles non résolues, le paramètre $w_{\beta,k}^{(i)}$ représente le poids de la cible faiblement résolue $j$, $F_{\beta,k}^{(j)}\kappa+d_{\beta,k}^{(j)}$ et $P_{\gamma,k}^{(i)}$ sont la moyenne et la covariance des $J_{\beta,k}$ gaussiennes.
+ 
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Recusrion du GMPHD                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Recursion du GMPHD}
+L'intensité \textit{a posteriori} du \ac{RFS} représentant l'ensemble des cibles sur la surface $S$ peut s'écrire sous la forme d'un mélange de gaussiennes :
+\begin{equation}
+\label{gauss}
+ v_k(x)=\sum\limits_{i=1}^{J_{k}}w_{k}^{(i)}.\mathcal{N}\left(x;m_{k}^{(i)},P_{k}^{(i)} \right) 
+\end{equation}
+où $w_{k}^{(i)}$, $m_{k}^{(i)}$ et $P_{k}^{(i)}$ sont les paramètres de poids, de moyenne et de covariance des gaussiennes, ainsi que leur nombre $J_{k}$.\\
+
+L'intensité prédite est aussi un mélange gaussien donnée au temps $t_k$ par:
+\begin{equation}
+\label{gauss_pred}
+ v_{k|k-1}(x)=  v_{S,k|k-1}(x)+ v_{\beta,k|k-1}(x)+ \gamma_{k}(x)
+\end{equation}
+où $\gamma$ est définie par la relation (\ref{RFS_naissance)}.
+
+\begin{equation}
+\label{gauss_surv}
+v_{S,k|k-1}(x)=  p_{S,k} \sum\limits_{i=1}^{J_{k}}w_{k}^{(i)}.\mathcal{N}\left(x;m_{S,k|k-1}^{(j)},P_{S,k|k-1}^{(j)} \right) 
+\end{equation}
+où $m_{S,k|k-1}^{(j)}$ et $P_{S,k|k-1}^{(j)}$ sont le vecteur d'état prédit et la covariance associée tels que $(\forall j \in J_{k-1})$:
+
+\begin{equation}
+m_{S,k|k-1}^{(j)}= F_{k-1} m_{k-1}^{(j)}
+\end{equation}
+\begin{equation}
+P_{S,k|k-1}^{(j)}=F_{k-1}  P_{k-1}^{(j)}  F_{k-1}^T + Q_{k-1}
+\end{equation}
+
+L'intensité prédite des cibles faiblement résolues s'écrit:
+
+\begin{equation}
+\label{gauss_eng}
+v_{\beta,k|k-1}(x)=  \sum\limits_{i=1}^{J_{k}}  \sum\limits_{l=1}^{J_{\beta, k}} w_{k-1}^{(j)}. w_{\beta, k}^{(l)} \mathcal{N}\left(x;m_{\beta ,k|k-1}^{(j,l)},P_{\beta, k|k-1}^{(j,l)} \right) 
+\end{equation}
+où $m_{\beta,k|k-1}^{(j,l)}$ et $P_{\beta,k|k-1}^{(j,l)}$ sont le vecteur d'état prédit d'une cible $l$ engendrée par la cible $j$ et sa covariance associée tels que $(\forall (j,l) \in (J_{k-1}\times J_{\beta, k}))$:
+
+\begin{equation}
+m_{\beta,,k|k-1}^{(j,l)}= F_{\beta ,k-1}^l  m_{k-1}^{(j)} + d_{\beta,k-1}^{(l)}
+\end{equation}
+\begin{equation}
+P_{\beta,k|k-1}^{(j,l)}=F_{\beta ,k-1}^l    P_{\beta,k-1}^{(j)} ( F_{\beta ,k-1}^l )^T + Q_{\beta,k-1}^{(l)}
+\end{equation}
+ 
+ 
+Sous les hypothèses gaussienne, l'intensité prédite \ref{gauss_pred} peut s'écrire sous la forme suivante:
+ 
+\begin{equation}
+\label{gauss_surv2}
+v_{k|k-1}(x)=     \sum\limits_{i=1}^{J_{k|k-1}}w_{k|k-1}^{(i)}\mathcal{N}\left(x;m_{k|k-1}^{(i)},P_{k|k-1}^{(i)} \right) 
+\end{equation}
+ 
+ Ainsi l'intensité a posteriori au temps $t_k$ est définie par un mélange gauissien tel que:
+ 
+ \begin{equation}
+\label{gauss_posteriori}
+v_{k}(x)=  (1-P_{D,k})v_{k|k-1}(x)  + \sum\limits_{z\in Z_k} v_{D,k}(x;z) 
+\end{equation}
+où
+ \begin{equation}
+v_{D,k}(x;z) =  \sum\limits_{j=1}^{J_{k|k-1}}w_{k}^{(j)}(z)\mathcal{N}\left(x;m_{k|k}^{(j)}(z),P_{k|k}^{(j)} \right) 
+\end{equation}
+\begin{equation}
+w_{k}^{(j)}(z)= \frac{P_{D,k}w^{(j)}_{k|k-1}q_k^{(j)}(z)}{\kappa (z)+P_{D,k} \sum\limits_{l=1}^{J_{k|k-1}}w^{(l)}_{k|k-1}q_k^{(l)}(z)}
+\end{equation}
+ \begin{equation}
+ q_k^{(j)}(z) = \mathcal{N}\left(z;H_k m_{k|k-1}^{(j)},H_k P_{k|k-1}^{(j)}H_k '+ R_k\right)
+ \label{m_vraisemblance}
+\end{equation}
+
+\begin{equation}
+m_{k|k}^{(j)}(z) = m_{k|k-1}^{(j)}+K_k^{(j)}(z-H_k m_{k|k-1}^{(j)})
+\label{m_etatestime}
+\end{equation}
+  \begin{equation}
+P_{k|k}^{(j)}=(I-K_k^{(j)}H_k)P_{k|k-1}^{(j)}
+\label{m_covarianceestimee}
+ \end{equation}
+  \begin{equation}
+K_k^{(j)}= P_{k|k-1}^{(j)}H_k^T(H_kP_{k|k-1}^{(j)}H_k^T+R_k)^{-1}
+ \end{equation}
+et la variable $q_k^{(j)}(z)$ n'est autre que la vraisemblance entre l'état prédit $m_{k|k-1}^{(j)}$ et la mesure $z$ $(\forall z \in Z(k))$ .
+ \\
+ 
+	De plus, connaissant les intensités de mélange Gaussien $\nu_{k|k-1}$ et $\nu_{k|k}$ il devient possible de déterminer le nombre prédit $\hat{N}_{k|k-1}$  et estimé $\hat{N}_{k}$  de cibles présentent dans la scène. D'après l'article \cite{Vo06a} ces nombres s'expriment de la manière suivante:
+	
+\begin{equation}
+	\hat{N}_{k|k-1}=\hat{N}_{k-1}  \left(  p_{s,k}+\sum\limits_{j=1}^{J_{\beta,k}}w_{\beta,k}^{(j)} \right) +\sum\limits_{j=1}^{J_{\gamma,k}}w_{\gamma,k}^{(j)}
+\end{equation}
+et
+\begin{equation}
+	\hat{N}_{k}=\hat{N}_{k|k-1}(1-p_{D,k}) + \sum\limits_{z\in Z(k)} \sum\limits_{j=1}^{J_{k|k-1}}w_{k}^{(j)}
+\end{equation}
+%
+%
+% \begin{algorithm}
+% \caption{Synoptique du GMPHD}
+% \label{alg10}
+% \algsetup{indent=2em}
+% \begin{algorithmic}
+% \INPUT{\begin{displaymath} \begin{array}{l} \{ w_{k-1}^{i},m_{k-1}^{i},P_{k-1}^{i} \} _{i=1}^{J_{k-1}} \\ Z(k) \textrm{: enemsble de mesures au temps courant}\end{array} \end{displaymath}}
+% %----------------------------------------------------------------------------
+%\STATE \textbf{Etape 1. (prediction des cibles naissantes et faiblement résolues)}
+%
+%\STATE  i=0
+%\FOR{$j=1$ ,..., $J_{\gamma,k}$}
+%	\STATE 		$i:=i+1$
+%	\STATE  	$w_{k|k-1}^{(i)}= w_{\gamma,k}^{(j)},m_{k|k-1}^{(i)}= m_{\gamma,k}^{(j)},P_{k|k-1}^{(i)}= P_{\gamma,k}^{(j)}$
+%\ENDFOR
+%
+%
+%\FOR{$j=1,\cdots,J_{\beta,k}$}
+% 	\FOR{$l=1,\cdots,J_{k-1}$}
+% 	\STATE $i:=i+1$ 	
+% 	\STATE $w_{k|k-1}^{(i)}= w_{k-1}^{(j)}w_{\beta,k}^{(l)}, m_{k|k-1}^{(i)}= F_{\beta,k}^{(j)}m_{k-1}^{(j)}+d_{\beta,k-1}^{(j)}, P_{k|k-1}^{(i)}= 	F_{\beta,k}^{(j)}P_{k-1}^{(j)}(F_{\beta,k}^{(j)})^T+Q_{\beta,k-1}^{(j)}$
+%	\ENDFOR
+%\ENDFOR
+%
+%\STATE \textbf{Etape 2. (prediction des cibles existantes)}
+%
+%\FOR{$j=1,\cdots,J_{k-1}$}
+%	\STATE	$i:=i+1$	
+%	\STATE	$w_{k|k-1}^{(i)}= p_{s,k}w_{k-1}^{(j)}, m_{k|k-1}^{(i)}= F_{k-1}m_{k-1}^{(j)}, P_{k|k-1}^{(i)}= F_{k-1} P_{k-1}^{(j)}(F_{k-1})^T+Q_{k-1}$	
+%\ENDFOR
+%
+% \STATE $J_{k|k-1}=i$
+%\STATE \textbf{Etape 3. (Calcul des composants du PHD)}
+%
+%\FOR{$j=1,\cdots,J_{k|k-1}$}
+%	\STATE $\nu_{k|k-1}^{(j)}= H_k m_{k|k-1}^{(j)}$
+%	\STATE $S_{k}^{(j)}= H_k P_{k|k-1} H_k^T + R_k, K_{k}^{(j)}= P_{k|k-1}^{(i)}H_k^T (S_{k}^{(j)})^{-1}, P_{k|k}^{(j)}= [I-K_{k}^{(j)H_k}]P_{k|k-1}^{(i)}$
+%\ENDFOR
+%\STATE \textbf{Etape 4. (Mise à jour)}
+%\FOR{ $j=1,\cdots,J_{k|k-1}$}
+%	\STATE $w_{k}^{(j)}= (1-p_{D,k})w_{k|k-1}^{(j)}, m_{k}^{(j)}= m_{k|k-1}^{(j)}, P_{k}^{(j)}=  P_{k|k-1}^{(j)}$
+%\ENDFOR
+%
+%	\STATE $l:=0$
+%\FORALL{$z \in Z(k)$}
+%		\STATE $l:=l+1$
+%		\FOR{ $j=1,\cdots,J_{k|k-1}$}
+%		\STATE $w_{k}^{(lJ_{k|k-1}+j)}= p_{D,k}w_{k|k-1}^{(j)}\mathcal{N}(z;\nu_{k|k-1}^{(j)},S_k^{(j)})$
+%		\STATE $m_{k}^{(lJ_{k|k-1}+j)}= m_{k|k-1}^{(j)},P_{k}^{(lJ_{k|k-1}+j)}=  P_{k|k-1}^{(j)}$
+%	\ENDFOR
+%	\STATE $w_{k}^{(lJ_{k|k-1}+j)}= \frac{w_{k}^{(lJ_{k|k-1}+j)}}{\kappa (z)+\sum\limits_{i=1}^{J_{k|k-1}} w_{k}^{(lJ_{k|k-1}+i)}}$ 
+%\ENDFOR
+%\STATE $J_k=lJ_{k|k-1}+J_{k|k-1}$
+%\OUTPUT{$\{ w_k^{i},m_k^{i},P_k^{i}\} _{i=1}^{J_k}$ : l'ensemble des gaussiennes mises à jour}
+%  
+% \end{algorithmic}
+%
+%\end{algorithm}
+
+ \subsection{Implémentation}
+ 
+ L'état actuel du \ac{GMPHD} présenté dans la partie précédente ne permet pas d'assurer des contraintes temps réels puisque le nombre de gaussiennes augmente exponentiellement avec le nombre de nouvelles mesures. C'est pourquoi des heuristiques sont proposées pour réduire et limiter l'explosion de la combinatoire du filtre \ac{GMPHD}.  
+ 
+ \subsubsection{Fenêtrage statistique}
+ le fenêtrage statistique est une technique très classique dans le domaine de la trajectographie. Il permet de sélectionner pour chaque piste, ou chaque gaussienne, un ensemble de mesures statistiquement proches de l'état prédit pouvant potentiellement être à l'origine de la cible suivie par la piste. Cette étape est décrite dans la partie \ref{SectionFenetrageStat}.
+  
+ \subsection{Réduction de la complexité}
+Le filtre \ac{GMPHD} est similaire au filtre de mélange gaussien (FBO \cite{BarShalom88}) dans le sens où ces deux derniers propage une somme de gaussiennes. Le \ac{GMPHD}, comme les filtres à somme gaussienne, souffre d'un problème de complexité puisque le nombre de gaussiennes augmente dans le temps au moment de l'association des gaussiennes aux mesures. En effet au temps $t_k$, le filtre \ac{GMPHD} génère un nombre de gaussiennes de l'ordre de $(J_{k-1}(1+J_{\beta ,k})+J_{\gamma ,k})(1+|Z_k|)$ pour représenter l'intensité \textit{a posteriori} $v_k$. Deux étapes, classiques dans le domaine de la trajectographie multi-cible, permettent de réduire le nombre de gaussiennes à propager à la prochaine itération : le ``pruning'' et le ``merging''. Ces techniques sont classiques dans le domaine de la trajectographie multi-cible à partir d'algorithmes de pistage bayésien. Le ``pruning'' consiste tout simplement à supprimer les piste sprésentant un poids inférieure à un seuil $Th$ fixé préalablement. Les pistes survivantes sont ensuite soumises au ``merging'' qui permet de combiner les pistes qui présentent des effets similaires (\textit{i.e.} qui présente des caractéristiques cinématiques proches). Les pistes qui sont donc proches statistiquement sont combinées. La sélection des pistes est faite à partir d'un test du Chi2. La synoptique de ces deux étapes sont représentées dans le tableau \ref{alg1}.
+
+ \begin{algorithm}
+
+ \begin{algorithmic} 
+ \INPUT{\begin{displaymath} \begin{array}{l} \{ w_k^{i},m_k^{i},P_k^{i}\} _{i=1}^{J_k} \textrm{ : l'ensemble des gaussiennes}\\ U \textrm{ : la distance statistique de suppression} \\ J_{max} \textrm{ : le nombre de gaussiennes final maximum} \end{array} \end{displaymath}}
+%\INPUT{\begin{itemize} \item ${ w_k^{i},m_k^{i},P_k^{i}\} _{i=1}^{J_k}$ : l'ensemble des gaussiennes ayant survécues au pruning \item $U$ : la distance statistique de suppression \item $J_{max}$ : la distance statistique de suppression \end{itemize}}
+  \STATE $I=\{i=1,\ldots,J_k|w_k^{(i)}>Th\}$
+  \STATE $l=0$
+\REPEAT
+\STATE $l:=l+1$
+\IF{$l>J_{max}$}
+\STATE \textbf{break}
+\ENDIF
+\STATE $j:=\arg\max\limits_{i\in I}w_k^{(i)}$ 
+\STATE $L:=\left\{i\in I|(m_k^{(i)}-m_k^{(j)})^T(P_k^{(i)})^{-1}(m_k^{(i)}-m_k^{(j)})<U\right\}$
+\STATE $\tilde{w}_k^{(l)}=\sum\limits_{i\in L} w_k^{(i)}$
+\STATE $\tilde{m}_k^{(l)}=\dfrac{1}{\tilde{w}_k^{(l)}}\sum\limits_{i\in L} w_k^{(i)}.m_k^{(i)}$
+\STATE $\tilde{P}_k^{(l)}=\dfrac{1}{\tilde{w}_k^{(l)}}\sum\limits_{i\in L}w_k^{(i)}.(m_k^{(l)}-m_k^{(i)}).(m_k^{(l)}-m_k^{(i)})^T$
+\STATE $I:=I\textbackslash L$
+\UNTIL{$I=\phi$}
+\OUTPUT{$\{ \tilde w_k^{i},\tilde m_k^{i},\tilde P_k^{i}\} _{i=1}^{\tilde J_k}$ : l'ensemble réduit des gaussiennes}
+ \end{algorithmic}
+ \caption{Etape de pruning et merging du GMCPHD}
+ \label{alg1}
+\end{algorithm}
+ 
+
+\subsubsection{Sélection des gaussiennes}
+\label{SelectionGausiennes}
+	Les états des cibles sont déterminés par l'intensité \textit{a posteriori} en ne sélectionnant que les composants ayant un poids supérieur à un certain seuil. En général, les états des pistes sont représentés par l'ensemble des gaussiennes estimées et covariances associées tels que le poids des gaussiennes est supérieur à 0.5:
+	
+\begin{equation}
+\hat{X}_k=\{(m_k^i, P_k^i),(\forall i \in J_k) w_k^i>0.5\}
+\end{equation}
+
+\subsubsection{Labélisation}
+	 Après l'étape de sélections des gaussiennes pour représenter l'ensemble des pistes il devient relativement difficile d'interpréter et de manipuler un ensemble de pistes associées au même objet car plusieurs gaussiennes peuvent être représentatives de la même cible malgré l'étape de ``merging" décrite précédemment. C'est pourquoi, il est proposé d'introduire une étape de labélisation qui permet de regrouper toutes les gaussiennes présentant le même label (\textit{i.e.} représentant la même cible) et d'afficher en sortie pour chaque groupe soit la gaussienne présentant le poids le plus fort soit une piste résultant de la fusion de toutes les gaussiennes du groupe. La génération d'un nouveau label s'effectue à l'initialisation et se label est propagé par la suite à chaque étape de prédiction et de mise à jour.    
+	 
+\subsection{Bilan}
+Le filtre \ac{GMPHD} a été présenté dans ce chapitre. Ce filtre permet de propager les intensités du premier ordre (\textit{i.e.} les fonctions d'intensité) et d'estimer les gaussiennes représentant l'ensemble des cibles. Cependant la propagation des gaussiennes croit exponentiellement. C'est pourquoi des techniques simples de limitation du nombre de gaussiennes sont intégrées au \ac{GMPHD}. 
+
+Les caractéristiques du \ac{PHD} sont les suivantes:
+\begin{itemize}
+\item[-]c'est une méthode  ``one-scan'' et ne nécessite pas de mémoriser les mesures antérieures au ``scan'' courant,
+\item[-]l'estimation de l'état des cibles résultes d'un processus de combinaison de gaussiennes,
+\item[-]le nombre des cibles présentes est inconnu,
+\item[-]la probabilité de détection des cibles est unitaire,
+\item[-]la méthode permet de traiter l'initialisation de pistes,
+\item[-]la méthode permet de traiter le cas des cibles étendues ou faiblement résolues.
+\end{itemize}
+La figure \ref{fig:GMPHD} représente le cycle \ac{GMPHD}. 
+%======================================
+% Cycle du MHT
+%======================================
+\begin{center}
+\begin{figure}
+\label{fig:SDA}
+\includegraphics[scale=0.6]{Cycle_PHD.png} 
+\caption{Cycle du \ac{GMPHD}.}
+\end{figure}		 
+\end{center}
+
+ 
+Avantages du \ac{PHD} :
+\begin{enumerate}[label=\arabic*.]
+ \item prise en compte de cibles étendues,
+ \item prise en compte de cibles multiples en nombre inconnu,
+ \item prise en compte des fausses alarmes,  
+ \item faible complexité de calcul, 
+ \item initialisation des nouvelles cibles détectées.
+\end{enumerate}
+
+Inconvénients du \ac{PHD} :
+\begin{enumerate}[label=\arabic*.]
+\item le volume de surveillance doit être constant ce qui exclu l'extension au cas multi-capteur dans la forme originelle du \ac{PHD},
+\item les pistes associées aux cibles n'existent pas, il faut procéder à un étape de labellisation des gaussiennes pour créer des pistes, 
+\item  la prise en compte de l'information contextuelle est très complexe \cite{Zheng18, Ulmke07}.
+\end{enumerate}
+
+  
+ \begin{thebibliography}{9} 
+ %==================================
+ % Association
+ %==================================
+ \bibitem{Mahler2003}
+ R. Mahler, \emph{Multitarget Bayes filtering via first-order multitarget moments}, Proc. of IEEE transactions on
+aerospace and electronic systems, vol. 39, no. 4, pages 1152–1178, 2003.
+ \bibitem{BarShalom88}
+Y. Bar-Shalom and T.E. Fortmann, \emph{Tracking and data association}, Academic Press, 1988.
+\bibitem{Lin06}
+L. Lin, Y. Bar-Shalom and T. Kirubarajan, \emph{Track labeling and {PHD} Filter for Multitarget Tracking}, Proc.of IEEE transactions on 
+Aerospace and Electronic Systems, vol. 42, no. 4, 2006.
+\bibitem{Vo05b}
+B.N Vo, S. Singh and A. Doucet,\emph{Sequential Monte Carlo Implementation of the {PHD} Filter for Multitarget tracking},
+Proc.of IEEE transactions on Aerospace and Electronic Systems, vol. 41, no. 4, 2005. 
+\bibitem{Clark08}
+D. Clark, B.-T. Vo, B.-N. Vo, and S. Godsill,\emph{Gaussian Mixture Cardinalized Probability Hypothesis Density Filter for Linear Gaussian Multi-Target Models}, IET conference, 2008.
+\bibitem{Clark06}
+ D. Clark,\emph{Multiple target tracking with the Probability Hypothesis Density Filter}, Computer Science, 2006. 
+ \bibitem{Clark07}
+ D. Clark, B. Vo and J. Bell, \emph{GM-PHD filter multi-target tracking in sonar images}, Proc. of ICIF, Jul. 2007.
+  \bibitem{Vo06a}
+B.N. Vo and W.K. Ma, \emph{Gaussian Mixture Probability Hypothesis Density Filter}, Proc. of IEEE Trans Signal Processing, vol. 54, no. 11, 2006.
+  \bibitem{Schuhmacher08}
+D. Schuhmacher, B.T. Vo and B.N. Vo, \emph{A Consistent Metric for Performance Evaluation of Multi-Object Filters}, Proc. of IEEE Transactions on Signal Processing, Vol. 56, pp. 3447–3457, 2008.
+\bibitem{Zheng18} 
+J. Zheng and M. Gao, \emph{Tracking Ground Targets with a Road Constraint Using a GMPHD Filter}
+Proc. of sensors conference 2018, Vol. 2723, Aug. 2018.  
+ \bibitem{Ulmke07} 
+M. Ulmke, O. Erdinc and P. Willett, \emph{Gaussian mixture cardinalized PHD filter for ground moving target tracking}, In
+Proc. of the 10th International Conference on Information Fusion, Jul. 2007.
+
+\end{thebibliography}
+ %==================================
+ % Architecture de fusion
+ %==================================
+% \section{{\'E}tat de l'art des architectures de fusion}
+%
+%\input{ArchiFusion.tex}	
+ %==================================
+ % état de l'art partenaire
+ %==================================	 	  
+% \chapter{état de l'art partenaire}
+% 
+% L'\ac{ONERA} dispose d'un ensemble de briques algorithmiques permettant de répondre à la problématique
+%de l'étude ARCADIS-DRIL. Ces briques sont le résultats de plusieurs années de recherche qui ont été capitalisées
+%autour d'une plateforme logicielle appelée \acf{SAFIR-NG}.
+%Partant de ces briques algorithmiques et de l’art général,
+%
+%\section{pistage multi-cible et multi-capteur}
+% 
+%\subsection{pistage multi-cible}
+%\subsubsection{présentation}
+%\subsubsection{synoptique}
+%\subsubsection{principaux résultats}
+%\subsection{pistage de cibles étendues}
+%\subsubsection{présentation}
+%\subsubsection{synoptique}
+%\subsubsection{principaux résultats}
+%\subsection{pistage \acf{JTC}}
+%\subsubsection{présentation}
+%\subsubsection{synoptique}
+%\subsubsection{principaux résultats}
+% introduction dans les fonctions de coûts de l'information de classification ou du score de classification
+% 
+% Parler du JTC
+% PHD au SPIE avec Aurélien
+%
+%\section{architecture de fusion} 
+ 
+	  
+\end{document}
